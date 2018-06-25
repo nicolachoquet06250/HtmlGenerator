@@ -2,7 +2,7 @@
 
 require_once 'Autoload.php';
 
-$generator = new \html_generator\HtmlGenerator(\html_generator\Frameworks::MATERIALIZE());
+$generator = new \html_generator\HtmlGenerator(\html_generator\Frameworks::BOOTSTRAP());
 
 $generator->head(
 	$generator->meta('viewport', 'width=device-width, initial-scale=1.0')
@@ -36,7 +36,7 @@ $header = $generator->header( [
 				  'test avec ormframework',
 				  [
 				  	'color' => 'blue',
-					'bodrer' => [
+					'border' => [
 						1, 'solid', 'black'
 					]
 				  ]
@@ -44,7 +44,7 @@ $header = $generator->header( [
 	$generator->b('toto',
 				  [
 					  'color' => 'red',
-					  'bodrer' => [
+					  'border' => [
 						  1, 'solid', 'blue'
 					  ]
 				  ]
@@ -70,7 +70,7 @@ $section = $generator->section(
 		$generator->b('test',
 					  [
 						  'color' => 'red',
-						  'bodrer' => [
+						  'border' => [
 							  1, 'solid', 'blue'
 						  ]
 					  ]
@@ -103,5 +103,8 @@ $generator->body($header);
 $generator->body($section);
 $generator->body($footer);
 
-
-echo $generator->display()."\n";
+if(!is_dir('./generated')) {
+	mkdir('./generated/', 0777, true);
+}
+file_put_contents('./generated/index.html', $generator->display()."\n");
+include './generated/index.html';
