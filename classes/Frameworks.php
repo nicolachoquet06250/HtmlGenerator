@@ -9,7 +9,7 @@ class Frameworks {
 
 	private static $bootstrap_versions = [
 		'v3' => [
-			'doc' => 'https://getbootstrap.com/',
+			'doc' => 'http://getbootstrap.com/docs/3.3/',
 			'css' => [
 				[
 					'src' => 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css',
@@ -27,7 +27,7 @@ class Frameworks {
 			]
 		],
 		'v4' => [
-			'doc' => 'http://getbootstrap.com/docs/3.3/',
+			'doc' => 'https://getbootstrap.com/',
 			'css' => [
 				[
 					'src' => 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css',

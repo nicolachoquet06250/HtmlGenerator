@@ -13,9 +13,11 @@ class HtmlGenerator implements Generator {
 
 	public function __construct(array $framework = Frameworks::FROM_SCRATCH) {
 		$this->framework = $framework === Frameworks::FROM_SCRATCH ? false : $framework;
+		var_dump($this->framework);
 	}
 
 	public function display($lang = 'fr') {
+		$str = '';
 		foreach ($this->framework['css'] as $css) {
 			$css['integrity'] = isset($css['integrity']) ? $css['integrity'] : '';
 			$this->head(
@@ -29,8 +31,9 @@ class HtmlGenerator implements Generator {
 				$this->script('application/javascript', $js['src'], $js['integrity'])
 			);
 		}
-		$str = "<!DOCTYPE html>\n";
+		$str .= "<!DOCTYPE html>\n";
 		$str .= "<html lang='{$lang}'>\n";
+		$str .= $this->comment('voir site ( liste des balises HTML5 ) : http://41mag.fr/liste-des-balises-html5')."\n";
 		$str .= "<head>\n";
 		$str .= $this->comment("{$this->framework['name']}-{$this->framework['version']}-doc : {$this->framework['doc']}")."\n";
 		$str .= "{$this->head()}</head>\n";
@@ -78,28 +81,8 @@ class HtmlGenerator implements Generator {
 		return "<img src='{$src}' alt='{$alt}' title='{$title}'{$style} />";
 	}
 
-	public function bdo() {
-		// TODO: Implement bdo() method.
-	}
-
 	public function base($href = '') {
 		return "<base href='{$href}'>";
-	}
-
-	public function blockquote($text, $style = []) {
-		// TODO: Implement blockquote() method.
-	}
-
-	public function abbr($text, $style = []) {
-		// TODO: Implement abbr() method.
-	}
-
-	public function address($text, $style = []) {
-		// TODO: Implement address() method.
-	}
-
-	public function area($style = []) {
-		// TODO: Implement area() method.
 	}
 
 	public function div($text = [], $style = []) {
@@ -126,10 +109,6 @@ class HtmlGenerator implements Generator {
 		return $str;
 	}
 
-	public function audio($src, $style = []) {
-		// TODO: Implement audio() method.
-	}
-
 	public function section($text = [], $style = []) {
 		$style = !empty($style) ? " style='{$this->style($style, true)}'" : "";
 		$str = "<section{$style}>\n";
@@ -140,9 +119,9 @@ class HtmlGenerator implements Generator {
 
 	private function liste($tag, $li, $style) {
 		$style = !empty($style) ? " style='{$this->style($style, true)}'" : "";
-		$str = "<{$tag}{$style}>\n";
+		$str = "\n<{$tag}{$style}>\n";
 		$str .= implode("\n", $li);
-		$str .= "\n</{$tag}>";
+		$str .= "\n</{$tag}>\n";
 
 		return $str;
 	}
@@ -254,5 +233,29 @@ class HtmlGenerator implements Generator {
 		$style = !empty($style) ? " style='{$this->style($style, true)}'" : "";
 		$text = implode("\n", $text);
 		return "<footer{$style}>{$text}</footer>";
+	}
+
+	public function bdo() {
+		// TODO: Implement bdo() method.
+	}
+
+	public function blockquote($text, $style = []) {
+		// TODO: Implement blockquote() method.
+	}
+
+	public function abbr($text, $style = []) {
+		// TODO: Implement abbr() method.
+	}
+
+	public function address($text, $style = []) {
+		// TODO: Implement address() method.
+	}
+
+	public function area($style = []) {
+		// TODO: Implement area() method.
+	}
+
+	public function audio($src, $style = []) {
+		// TODO: Implement audio() method.
 	}
 }
