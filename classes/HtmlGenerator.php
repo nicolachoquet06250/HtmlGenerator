@@ -8,15 +8,33 @@ use html_generator\interfaces\Generator;
 class HtmlGenerator implements Generator {
 
 	private $head = '',
-			$body = '';
+			$body = '',
+			$framework;
 
-	public function __construct() {
+	public function __construct(array $framework = Frameworks::FROM_SCRATCH) {
+		$this->framework = $framework === Frameworks::FROM_SCRATCH ? false : $framework;
+		var_dump($this->framework);
 	}
 
-	public function display(array $framework = Frameworks::FROM_SCRATCH) {
+	public function display($lang = 'fr') {
+		foreach ($this->framework['css'] as $css) {
+			$css['integrity'] = isset($css['integrity']) ? $css['integrity'] : '';
+			$this->head(
+				$this->link('stylesheet', $css['src'], $css['integrity'])
+			);
+		}
+
+		foreach ($this->framework['js'] as $js) {
+			$js['integrity'] = isset($js['integrity']) ? $js['integrity'] : '';
+			$this->head(
+				$this->script('application/javascript', $js['src'], $js['integrity'])
+			);
+		}
 		$str = "<!DOCTYPE html>\n";
-		$str .= "<html>\n";
-		$str .= "<head>\n{$this->head()}</head>\n";
+		$str .= "<html lang='{$lang}'>\n";
+		$str .= "<head>\n";
+		$str .= $this->comment("{$this->framework['name']}-{$this->framework['version']}-doc : {$this->framework['doc']}")."\n";
+		$str .= "{$this->head()}</head>\n";
 		$str .= "<body>\n{$this->body()}</body>\n";
 		$str .= "</html>";
 		return $str;
@@ -56,6 +74,11 @@ class HtmlGenerator implements Generator {
 		return "<hr />";
 	}
 
+	public function img($src, $alt, $title, $style = []) {
+		$style = !empty($style) ? " style='{$this->style($style, true)}'" : "";
+		return "<img src='{$src}' alt='{$alt}' title='{$title}'{$style} />";
+	}
+
 	public function bdo() {
 		// TODO: Implement bdo() method.
 	}
@@ -80,20 +103,62 @@ class HtmlGenerator implements Generator {
 		// TODO: Implement area() method.
 	}
 
-	public function div($style = []) {
-		// TODO: Implement div() method.
+	public function div($text = [], $style = []) {
+		$style = !empty($style) ? " style='{$this->style($style, true)}'" : "";
+		$str = "<div{$style}>\n";
+		$str .= implode("\n", $text);
+		$str .= "\n</div>";
+		return $str;
 	}
 
-	public function nav($style = []) {
-		// TODO: Implement nav() method.
+	public function nav($text = [], $style = []) {
+		$style = !empty($style) ? " style='{$this->style($style, true)}'" : "";
+		$str = "<nav{$style}>\n";
+		$str .= implode("\n", $text);
+		$str .= "\n</nav>";
+		return $str;
 	}
 
-	public function aside($style = []) {
-		// TODO: Implement aside() method.
+	public function aside($text = [], $style = []) {
+		$style = !empty($style) ? " style='{$this->style($style, true)}'" : "";
+		$str = "<aside{$style}>\n";
+		$str .= implode("\n", $text);
+		$str .= "\n</aside>";
+		return $str;
 	}
 
 	public function audio($src, $style = []) {
 		// TODO: Implement audio() method.
+	}
+
+	public function section($text = [], $style = []) {
+		$style = !empty($style) ? " style='{$this->style($style, true)}'" : "";
+		$str = "<section{$style}>\n";
+		$str .= implode("\n", $text);
+		$str .= "\n</section>";
+		return $str;
+	}
+
+	private function liste($tag, $li, $style) {
+		$style = !empty($style) ? " style='{$this->style($style, true)}'" : "";
+		$str = "<{$tag}{$style}>\n";
+		$str .= implode("\n", $li);
+		$str .= "\n</{$tag}>";
+
+		return $str;
+	}
+
+	public function ol($li = [], $style = []) {
+		return $this->liste(__FUNCTION__, $li, $style);
+	}
+
+	public function ul($li = [], $style = []) {
+		return $this->liste(__FUNCTION__, $li, $style);
+	}
+
+	public function li($text, $style = []) {
+		$style = !empty($style) ? " style='{$this->style($style, true)}'" : "";
+		return "<li{$style}>{$text}</li>";
 	}
 
 	public function meta_charset($value = '') {
@@ -108,12 +173,14 @@ class HtmlGenerator implements Generator {
 		return "<meta name='{$name}' content='{$content}' />";
 	}
 
-	public function link($rel, $href) {
-		return "<link rel='{$rel}' href='{$href}' />";
+	public function link($rel, $href, $integrity = '') {
+		$integrity = $integrity !== '' ? " integrity='{$integrity}' crossorigin='anonymous'" : "";
+		return "<link rel='{$rel}' href='{$href}'{$integrity} />";
 	}
 
-	public function script($type, $src) {
-		return "<script type='{$type}' src='{$src}'></script>";
+	public function script($type, $src, $integrity = '') {
+		$integrity = $integrity !== '' ? " integrity='{$integrity}' crossorigin='anonymous'" : "";
+		return "<script type='{$type}' src='{$src}'{$integrity}></script>";
 	}
 
 	public function head($text = null) {
@@ -178,13 +245,15 @@ class HtmlGenerator implements Generator {
 		return null;
 	}
 
-	public function header($text, $style = []) {
+	public function header($text = [], $style = []) {
 		$style = !empty($style) ? " style='{$this->style($style, true)}'" : "";
+		$text = implode("\n", $text);
 		return "<header{$style}>\n{$text}\n</header>";
 	}
 
-	public function footer($text, $style = []) {
+	public function footer($text = [], $style = []) {
 		$style = !empty($style) ? " style='{$this->style($style, true)}'" : "";
+		$text = implode("\n", $text);
 		return "<footer{$style}>{$text}</footer>";
 	}
 }
