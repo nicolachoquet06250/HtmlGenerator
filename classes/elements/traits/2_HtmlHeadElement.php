@@ -5,6 +5,6 @@ trait HtmlHeadElement {
 
 	public function display(): string
     {
-        return "<{$this->get_name()} {$this->attrs()}/>";
+        return "<{$this->get_name()} {$this->attrs()} />";
     }
 }

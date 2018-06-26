@@ -42,8 +42,43 @@ trait HtmlBodyElement {
     protected $spellcheck = 'false';
     protected $tabindex = 0;
 
+    public function attrs()
+    {
+        $str = '';
+        foreach ($this as $prop => $value) {
+            if($prop !== 'framework' && $prop !== 'content' && $value !== '' && gettype($value) !== 'array') {
+                $str .= " {$prop}='{$value}'";
+            }
+        }
+
+        foreach ($this as $prop => $value) {
+            if($prop !== 'framework' && gettype($value) === 'array') {
+                if(!empty($value)) {
+                    $str .= " {$prop}='";
+                    if (isset($value[0])) {
+                        $str .= implode(' ', $value);
+                        $str .= "'";
+                    } else {
+                        foreach ($value as $sous_prop => $sous_value) {
+                            $str .= "{$sous_prop}: ";
+                            if (gettype($sous_value) === 'array') {
+                                foreach ($sous_value as $id => $item) {
+                                    $sous_value[$id] .= gettype($item) === 'integer' ? 'px' : '';
+                                }
+                            }
+                            $str .= gettype($sous_value) === 'array' ? implode(' ', $sous_value) : $sous_value;
+                            $str .= ';';
+                        }
+                        $str .= "'";
+                    }
+                }
+            }
+        }
+        return $str;
+    }
+
 	public function display(): string
     {
-        return "<{$this->get_name()}{$this->attrs()}>{$this->content()}<{$this->get_name()}/>";
+        return "<{$this->get_name()}{$this->attrs()}>{$this->content()}</{$this->get_name()}>";
     }
 }

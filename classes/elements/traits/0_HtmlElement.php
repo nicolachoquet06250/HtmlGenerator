@@ -27,7 +27,12 @@ trait HtmlElement {
 			}
 
 			if(gettype($arguments[0]) === 'array') {
-				foreach ($arguments[0] as $key => $valeur) {
+			    foreach ($arguments[0] as $key => $valeur) {
+			        if(gettype($key) === 'integer') {
+			            if(gettype($this->$name) === 'string' || $this->$name === null) {
+			                $this->$name = [];
+                        }
+                    }
 					$this->$name[$key] = $valeur;
 				}
 			}
