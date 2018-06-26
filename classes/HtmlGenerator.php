@@ -3,6 +3,8 @@
 namespace html_generator;
 
 use html_generator\interfaces\Generator;
+use HtmlBodyElement;
+use HtmlHeadElement;
 
 /**
  * Class HtmlGenerator
@@ -11,8 +13,14 @@ use html_generator\interfaces\Generator;
  *
  * @method void reset()
  * @method null|\b b(array $attrs = null)
- * @method HtmlGenerator head(\HtmlHeadElement $element)
- * @method HtmlGenerator body(\HtmlBodyElement $element)
+ * @method null|\a a(array $attrs = null)
+ * @method null|\meta meta(array $attrs = null)
+ * @method null|\link link(array $attrs = null)
+ * @method null|\script script(array $attrs = null)
+ * @method null|\style style(array $attrs = null)
+ * @method null|\title title(array $attrs = null)
+ * @method HtmlGenerator|string head(\HtmlHeadElement $element = null)
+ * @method HtmlGenerator|string body(HtmlBodyElement $element = null)
  */
 class HtmlGenerator implements Generator {
 	private $last_balise = '';
@@ -86,8 +94,27 @@ class HtmlGenerator implements Generator {
 				$this->$balise = null;
 				break;
 			case 'head':
+                /**
+                 * @var HtmlHeadElement $element
+                 */
+                if(!empty($arguments) && $arguments[0]) {
+                    $element = $arguments[0];
+                    if (in_array($element->get_name(), $this->head_balises)) {
+                        $this->head .= "{$element->display()}\n";
+                    }
+                    return $this;
+                }
+                return $this->head;
 			case 'body':
-				break;
+                /**
+                 * @var HtmlBodyElement $element
+                 */
+                if(!empty($arguments) && $arguments[0]) {
+                    $element = $arguments[0];
+                    $this->body .= "{$element->display()}\n";
+                    return $this;
+                }
+                return $this->body;
 			default:
 				$this->last_balise = $name;
 				$classname   = $name === 'var' ? 'html_var' : $name;

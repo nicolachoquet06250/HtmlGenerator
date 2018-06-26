@@ -4,53 +4,20 @@
  * Trait HtmlElement
  *
  * @method bool|array|HtmlElement 	framework(bool|array $framework)
- *
- * @method string|HtmlElement		content(string $content = null)
- *
- * @method array|HtmlElement 		style(array $style = null)
- * @method string|HtmlElement 		id(string $id = null)
- * @method array|HtmlElement 		class(array $class = null)
- * @method string|HtmlElement 		title(string $title = null)
- * @method string|HtmlElement 		accesskey(string $accesskey = null)
- * @method bool|HtmlElement 		contenteditable(bool $contenteditable = null)
- * @method string|HtmlElement 		contextmenu(string $contextmenu = null)
- * @method string|HtmlElement 		dir(string $dir = null)
- * @method bool|HtmlElement 		draggable(bool $draggable = null)
- * @method string|HtmlElement 		hidden(string $hidden = null)
- * @method string|HtmlElement 		lang(string $lang = null)
- * @method bool|HtmlElement 		spellcheck(bool $spellcheck = null)
- * @method bool|HtmlElement 		tabindex(int $tabindex = null)
  */
 trait HtmlElement {
 	protected $framework;
-
-	public static $LEFT_RIGHT = 'ltr';
-	public static $RIGHT_LEFT = 'rtl';
-	public static $AUTO = 'auto';
-
-	protected $content = '';
-
-	protected $style = [];
-	protected $id = '';
-	protected $class = [];
-	protected $title = '';
-	protected $accesskey = '';
-	protected $contenteditable = 'false';
-	protected $contextmenu = '';
-	protected $dir = 'ltr';
-	protected $draggable = 'true';
-	protected $hidden = '';
-	protected $lang = 'fr';
-	protected $spellcheck = 'false';
-	protected $tabindex = 0;
 
 	public function __construct($framework = false) {
 		$this->framework($framework);
 	}
 
-	public function data($name, $value) {
+	public function data($name, $value = null) {
 		$name = "data_{$name}";
-		$this->$name = $value;
+		if($value !== null) {
+            $this->$name = $value;
+        }
+		return $this->$name;
 	}
 
 	public function __call($name, $arguments) {
@@ -72,15 +39,10 @@ trait HtmlElement {
 			return $this;
 		}
 		if($name === 'data') {
-			if((!empty($arguments))) {
-				if($arguments[0]) {
-					$name = "data_{$arguments}";
-				}
-			}
-			if(!(!empty($arguments) && $arguments[1])) {
-				return $this->$name;
-			}
-			$this->$name = $value;
+		    if(count($arguments) === 1 || count($arguments) === 2) {
+		        $arguments[1] = isset($arguments[1]) ? $arguments[1] : null;
+                return $this->data($arguments[0], $arguments[1]);
+            }
 		}
 		return null;
 	}
@@ -95,4 +57,12 @@ trait HtmlElement {
 	public function display():string {
 		return $this->content();
 	}
+
+	public function get_name() {
+	    return explode('\\', get_class($this))[count(explode('\\', get_class($this)))-1];
+    }
+
+    protected function attrs() {
+        return '';
+    }
 }

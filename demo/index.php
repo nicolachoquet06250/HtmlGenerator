@@ -1,38 +1,81 @@
 <?php
 
+ini_set('display_errors', 'on');
+
 use \html_generator\Frameworks;
 
 require_once 'Autoload.php';
 
 try {
-	$generateur = new \html_generator\HtmlGenerator(Frameworks::FROM_SCRATCH);
-	$generateur->b()->id('test');
-	var_dump(
-			$generateur->b(
-				[
-					'title' => 'mon titre',
-					'style' => [
-						'color' => 'blue'
-					],
-					'class' => [
-						'ma_classe',
-						'col',
-						'm1',
-						's12'
-					]
-				]
-			)->id(),
-			$generateur->b()->title(),
-			$generateur->b()->style()
-	);
+    echo '<pre>';
 
-	$generateur->reset();
+	$generateur = new \html_generator\HtmlGenerator(Frameworks::BOOTSTRAP());
 
-	var_dump(
-		$generateur->b()->id(),
-		$generateur->b()->title(),
-		$generateur->b()->style()
-	);
+    //echo '<h1>B</h1>';
+	$b = $generateur->b();
+    $generateur->reset();
+	$b->id('test')
+        ->title('mon titre')
+        ->style(['color' => 'blue'])
+        ->class([
+        'ma_classe',
+        'col',
+        'm1',
+        's12'
+    ]);
+
+    //echo '<h1>A</h1>';
+    $a = $generateur->a();
+    $a->href('index.php?mavariable=2')
+        ->content('text')
+        ->style(['color' => 'red']);
+
+
+    //echo '<h1>META</h1>';
+    $meta = $generateur->meta();
+    $meta->charset('utf-8');
+
+    //echo '<h1>META1</h1>';
+    $generateur->reset();
+    $meta1 = $generateur->meta();
+    $meta1->name('description');
+    $meta1->content('voila une description');
+
+    //echo '<h1>LINK</h1>';
+    $link = $generateur->link()
+        ->href('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+        ->integrity('sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp');
+
+    //echo '<h1>SCRIPT</h1>';
+    $script = $generateur->script()
+        ->src('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+        ->integrity('sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp');
+
+    //echo '<h1>STYLE</h1>';
+    $style = $generateur->style()
+        ->content([
+            '#array' => [
+                'border' => [1, 'solid', 'black'],
+                'color' => 'blue'
+            ]
+        ]);
+
+    //echo '<h1>TITLE</h1>';
+    $title = $generateur->title()
+        ->content('mon titre');
+
+    //echo '<h1>TEST</h1>';
+    $generateur
+        ->head($meta)
+        ->head($meta1)
+        ->head($link)
+        ->head($script)
+        ->head($style)
+        ->head($title);
+
+    echo htmlentities($generateur->head());
+
+	echo '</pre>';
 }
 catch (Exception $e) {
 	exit($e->getMessage()."\n");

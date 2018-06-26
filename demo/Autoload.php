@@ -8,7 +8,6 @@ $dir = opendir('../classes/elements/traits');
 
 while (($file = readdir($dir)) !== false) {
 	if($file !== '.' && $file !== '..') {
-		var_dump($file);
 		$required[] = "../classes/elements/traits/{$file}";
 	}
 }
