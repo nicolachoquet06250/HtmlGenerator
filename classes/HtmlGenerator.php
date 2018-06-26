@@ -13,7 +13,6 @@ class HtmlGenerator implements Generator {
 
 	public function __construct(array $framework = Frameworks::FROM_SCRATCH) {
 		$this->framework = $framework === Frameworks::FROM_SCRATCH ? false : $framework;
-		var_dump($this->framework);
 	}
 
 	public function display($lang = 'fr') {
