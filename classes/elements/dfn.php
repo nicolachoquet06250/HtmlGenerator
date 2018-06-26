@@ -1,5 +1,5 @@
 <?php
 
 class dfn {
-	use HtmlElement;
+	use HtmlBodyElement;
 }

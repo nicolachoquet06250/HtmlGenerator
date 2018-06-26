@@ -4,5 +4,5 @@
  * @deprecated
  */
 class u {
-	use HtmlElement;
+	use HtmlBodyElement;
 }

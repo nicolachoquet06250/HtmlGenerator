@@ -1,5 +1,5 @@
 <?php
 
 class link {
-	use HtmlElement;
+	use HtmlHeadElement;
 }

@@ -6,7 +6,7 @@
  * @deprecated
  */
 class marquee {
-	use HtmlElement;
+	use HtmlBodyElement;
 
 	const SCROLL = 'scroll';
 	const SLIDE = 'slide';

@@ -1,5 +1,5 @@
 <?php
 
 class audio {
-	use HtmlElement;
+	use HtmlBodyElement;
 }

@@ -1,5 +1,5 @@
 <?php
 
 class sup {
-	use HtmlElement;
+	use HtmlBodyElement;
 }

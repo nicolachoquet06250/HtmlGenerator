@@ -6,5 +6,5 @@
  * @deprecated
  */
 class xmp {
-	use HtmlElement;
+	use HtmlBodyElement;
 }

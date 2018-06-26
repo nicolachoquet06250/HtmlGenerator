@@ -1,5 +1,5 @@
 <?php
 
 class abbr {
-	use HtmlElement;
+	use HtmlBodyElement;
 }

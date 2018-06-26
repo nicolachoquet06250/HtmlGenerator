@@ -1,5 +1,5 @@
 <?php
 
 class area {
-	use HtmlElement;
+	use HtmlBodyElement;
 }

@@ -1,5 +1,5 @@
 <?php
 
 class ruby {
-	use HtmlElement;
+	use HtmlBodyElement;
 }

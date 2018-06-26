@@ -1,5 +1,5 @@
 <?php
 
 class img {
-	use HtmlElement;
+	use HtmlBodyElement;
 }

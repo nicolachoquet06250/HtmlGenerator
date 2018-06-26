@@ -1,5 +1,5 @@
 <?php
 
 class footer {
-	use HtmlElement;
+	use HtmlBodyElement;
 }

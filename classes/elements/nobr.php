@@ -6,5 +6,5 @@
  * @deprecated
  */
 class nobr {
-	use HtmlElement;
+	use HtmlBodyElement;
 }

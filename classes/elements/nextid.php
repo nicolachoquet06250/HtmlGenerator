@@ -6,5 +6,5 @@
  * @deprecated
  */
 class nextid {
-	use HtmlElement;
+	use HtmlBodyElement;
 }

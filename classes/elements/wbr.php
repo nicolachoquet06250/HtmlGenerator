@@ -1,5 +1,5 @@
 <?php
 
 class wbr {
-	use HtmlElement;
+	use HtmlBodyElement;
 }

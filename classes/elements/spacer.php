@@ -6,7 +6,7 @@
  * @deprecated
  */
 class spacer {
-	use HtmlElement;
+	use HtmlBodyElement;
 
 	const HORIZONTAL = 'horizontal';
 	const VERTICAL = 'vertical';

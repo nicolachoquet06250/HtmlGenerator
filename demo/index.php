@@ -4,10 +4,42 @@ use \html_generator\Frameworks;
 
 require_once 'Autoload.php';
 
-$b = new b();
-$b->framework(Frameworks::BOOTSTRAP());
+try {
+	$generateur = new \html_generator\HtmlGenerator(Frameworks::FROM_SCRATCH);
+	$generateur->b()->id('test');
+	var_dump(
+			$generateur->b(
+				[
+					'title' => 'mon titre',
+					'style' => [
+						'color' => 'blue'
+					],
+					'class' => [
+						'ma_classe',
+						'col',
+						'm1',
+						's12'
+					]
+				]
+			)->id(),
+			$generateur->b()->title(),
+			$generateur->b()->style()
+	);
 
-var_dump($b);
+	$generateur->reset();
+
+	var_dump(
+		$generateur->b()->id(),
+		$generateur->b()->title(),
+		$generateur->b()->style()
+	);
+}
+catch (Exception $e) {
+	exit($e->getMessage()."\n");
+}
+//$b = new b();
+//$b->framework(Frameworks::BOOTSTRAP());
+
 //($b->id('test')
 //  ->style(['color' => 'blue'])
 //  ->class(['toto', 'test'])

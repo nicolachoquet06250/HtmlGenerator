@@ -10,7 +10,7 @@
  * @deprecated
  */
 class basefont {
-	use HtmlElement;
+	use HtmlBodyElement;
 
 	protected $color = '#FFFFFF';
 	protected $face = '';

@@ -1,5 +1,5 @@
 <?php
 
 class b {
-	use HtmlElement;
+	use HtmlBodyElement;
 }

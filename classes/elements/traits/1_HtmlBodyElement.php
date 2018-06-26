@@ -1,5 +1,5 @@
 <?php
 
-class head {
+trait HtmlBodyElement {
 	use HtmlElement;
 }

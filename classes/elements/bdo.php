@@ -1,7 +1,7 @@
 <?php
 
 class bdo {
-	use HtmlElement;
+	use HtmlBodyElement;
 
 	public function __construct() {
 		$this->dir = self::$AUTO;

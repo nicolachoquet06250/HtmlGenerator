@@ -4,5 +4,5 @@
  * @deprecated
  */
 class tt {
-	use HtmlElement;
+	use HtmlBodyElement;
 }

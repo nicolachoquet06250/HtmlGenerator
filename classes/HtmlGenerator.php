@@ -4,9 +4,25 @@ namespace html_generator;
 
 use html_generator\interfaces\Generator;
 
-
+/**
+ * Class HtmlGenerator
+ *
+ * @package html_generator
+ *
+ * @method void reset()
+ * @method null|\b b(array $attrs = null)
+ * @method HtmlGenerator head(\HtmlHeadElement $element)
+ * @method HtmlGenerator body(\HtmlBodyElement $element)
+ */
 class HtmlGenerator implements Generator {
-
+	private $last_balise = '';
+	private $head_balises = [
+		'meta',
+		'title',
+		'link',
+		'script',
+		'style'
+	];
 	private $head = '',
 			$body = '',
 			$framework;
@@ -57,204 +73,64 @@ class HtmlGenerator implements Generator {
 		return $str;
 	}
 
-	public function a($href, $title, $text, $style = []) {
-		$style = !empty($style) ? " style='{$this->style($style, true)}'" : "";
-		return "<a href='{$href}' title='{$title}'{$style}>{$text}</a>";
-	}
+	/**
+	 * @param $name
+	 * @param $arguments
+	 * @return null
+	 * @throws \Exception
+	 */
+	public function __call($name, $arguments = []) {
+		switch ($name) {
+			case 'reset':
+				$balise = $this->last_balise;
+				$this->$balise = null;
+				break;
+			case 'head':
+			case 'body':
+				break;
+			default:
+				$this->last_balise = $name;
+				$classname   = $name === 'var' ? 'html_var' : $name;
+				$framework   = $this->framework === Frameworks::FROM_SCRATCH ? false : $this->framework;
+				if(!isset($this->$name) || $this->$name === null) {
+					$this->$name = new $classname($framework);
+					if (!empty($arguments) && $arguments[0]) {
+						$props = array_keys((array)$this->$name);
+						foreach ($props as $id => $prop) {
+							preg_replace_callback('`([a-zA-Z]+)`', function ($matches) use (&$props, $id, $prop) {
+								$props[$id] = $matches[1];
+							}, $prop);
+						}
 
-	public function b($text, $style = []) {
-		$style = !empty($style) ? " style='{$this->style($style, true)}'" : "";
-		return "<b{$style}>{$text}</b>";
-	}
-
-	public function br() {
-		return "<br />";
-	}
-
-	public function hr() {
-		return "<hr />";
-	}
-
-	public function img($src, $alt, $title, $style = []) {
-		$style = !empty($style) ? " style='{$this->style($style, true)}'" : "";
-		return "<img src='{$src}' alt='{$alt}' title='{$title}'{$style} />";
-	}
-
-	public function base($href = '') {
-		return "<base href='{$href}'>";
-	}
-
-	public function div($text = [], $style = []) {
-		$style = !empty($style) ? " style='{$this->style($style, true)}'" : "";
-		$str = "<div{$style}>\n";
-		$str .= implode("\n", $text);
-		$str .= "\n</div>";
-		return $str;
-	}
-
-	public function nav($text = [], $style = []) {
-		$style = !empty($style) ? " style='{$this->style($style, true)}'" : "";
-		$str = "<nav{$style}>\n";
-		$str .= implode("\n", $text);
-		$str .= "\n</nav>";
-		return $str;
-	}
-
-	public function aside($text = [], $style = []) {
-		$style = !empty($style) ? " style='{$this->style($style, true)}'" : "";
-		$str = "<aside{$style}>\n";
-		$str .= implode("\n", $text);
-		$str .= "\n</aside>";
-		return $str;
-	}
-
-	public function section($text = [], $style = []) {
-		$style = !empty($style) ? " style='{$this->style($style, true)}'" : "";
-		$str = "<section{$style}>\n";
-		$str .= implode("\n", $text);
-		$str .= "\n</section>";
-		return $str;
-	}
-
-	private function liste($tag, $li, $style) {
-		$style = !empty($style) ? " style='{$this->style($style, true)}'" : "";
-		$str = "\n<{$tag}{$style}>\n";
-		$str .= implode("\n", $li);
-		$str .= "\n</{$tag}>\n";
-
-		return $str;
-	}
-
-	public function ol($li = [], $style = []) {
-		return $this->liste(__FUNCTION__, $li, $style);
-	}
-
-	public function ul($li = [], $style = []) {
-		return $this->liste(__FUNCTION__, $li, $style);
-	}
-
-	public function li($text, $style = []) {
-		$style = !empty($style) ? " style='{$this->style($style, true)}'" : "";
-		return "<li{$style}>{$text}</li>";
-	}
-
-	public function meta_charset($value = '') {
-		return "<meta charset='{$value}' />";
-	}
-
-	public function title($text) {
-		return "<title>{$text}</title>";
-	}
-
-	public function meta($name = '', $content = '') {
-		return "<meta name='{$name}' content='{$content}' />";
-	}
-
-	public function link($rel, $href, $integrity = '') {
-		$integrity = $integrity !== '' ? " integrity='{$integrity}' crossorigin='anonymous'" : "";
-		return "<link rel='{$rel}' href='{$href}'{$integrity} />";
-	}
-
-	public function script($type, $src, $integrity = '') {
-		$integrity = $integrity !== '' ? " integrity='{$integrity}' crossorigin='anonymous'" : "";
-		return "<script type='{$type}' src='{$src}'{$integrity}></script>";
-	}
-
-	public function head($text = null) {
-		if(!$text) {
-			return $this->head;
-		}
-		$this->head .= "{$text}\n";
-		return null;
-	}
-
-	public function style($style = [], $included = false) {
-		$str = "";
-		if(!$included) {
-			$str .= "<style>\n";
-			foreach ($style as $selector => $styles) {
-				$str .= "{$selector} {\n";
-				foreach ($styles as $prop => $value) {
-					$str .= "{$prop}:";
-					if (gettype($value) === 'string') {
-						$str .= " {$value}";
-					} elseif (gettype($value) === 'integer') {
-						$str .= " {$value}px";
-					} else {
-						foreach ($value as $item) {
-							$str .= gettype($item) === 'string' ? " {$item}" : " {$item}px";
+						foreach ($arguments[0] as $prop => $valeur) {
+							if (in_array($prop, $props)) {
+								$this->$name()->$prop($valeur);
+							} else {
+								throw new \Exception("L'attribut {$prop} n'existe pas dans l'élément html <{$name}>");
+							}
 						}
 					}
-					$str .= ";\n";
 				}
-				$str .= "}\n";
-			}
-			$str .= "</style>";
-		}
-		else {
-			$i = 0;
-			foreach ($style as $prop => $value) {
-				$str .= "{$prop}:";
-				if (gettype($value) === 'string') {
-					$str .= " {$value}";
-				} elseif (gettype($value) === 'integer') {
-					$str .= " {$value}px";
-				} else {
-					foreach ($value as $item) {
-						$str .= gettype($item) === 'string' ? " {$item}" : " {$item}px";
+				else {
+					if (!empty($arguments) && $arguments[0]) {
+						$props = array_keys((array)$this->$name);
+						foreach ($props as $id => $prop) {
+							preg_replace_callback('`([a-zA-Z]+)`', function ($matches) use (&$props, $id, $prop) {
+								$props[$id] = $matches[1];
+							}, $prop);
+						}
+
+						foreach ($arguments[0] as $prop => $valeur) {
+							if (in_array($prop, $props)) {
+								$this->$name()->$prop($valeur);
+							} else {
+								throw new \Exception("L'attribut {$prop} n'existe pas dans l'élément html <{$name}>");
+							}
+						}
 					}
 				}
-				$str .= ";";
-				$i++;
-				if($i < count($style)) {
-					$str .= " ";
-				}
-			}
+				return $this->$name;
 		}
-		return $str;
-	}
-
-	public function body($text = null) {
-		if(!$text) {
-			return $this->body;
-		}
-		$this->body .= "{$text}\n";
 		return null;
-	}
-
-	public function header($text = [], $style = []) {
-		$style = !empty($style) ? " style='{$this->style($style, true)}'" : "";
-		$text = implode("\n", $text);
-		return "<header{$style}>\n{$text}\n</header>";
-	}
-
-	public function footer($text = [], $style = []) {
-		$style = !empty($style) ? " style='{$this->style($style, true)}'" : "";
-		$text = implode("\n", $text);
-		return "<footer{$style}>{$text}</footer>";
-	}
-
-	public function bdo() {
-		// TODO: Implement bdo() method.
-	}
-
-	public function blockquote($text, $style = []) {
-		// TODO: Implement blockquote() method.
-	}
-
-	public function abbr($text, $style = []) {
-		// TODO: Implement abbr() method.
-	}
-
-	public function address($text, $style = []) {
-		// TODO: Implement address() method.
-	}
-
-	public function area($style = []) {
-		// TODO: Implement area() method.
-	}
-
-	public function audio($src, $style = []) {
-		// TODO: Implement audio() method.
 	}
 }

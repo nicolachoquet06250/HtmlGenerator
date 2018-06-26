@@ -4,5 +4,5 @@
  * @deprecated
  */
 class strike {
-	use HtmlElement;
+	use HtmlBodyElement;
 }

@@ -6,5 +6,5 @@
  * @deprecated
  */
 class acronym {
-	use HtmlElement;
+	use HtmlBodyElement;
 }

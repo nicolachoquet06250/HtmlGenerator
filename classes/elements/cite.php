@@ -1,5 +1,5 @@
 <?php
 
 class cite {
-	use HtmlElement;
+	use HtmlBodyElement;
 }

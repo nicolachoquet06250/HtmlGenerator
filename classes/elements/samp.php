@@ -1,5 +1,5 @@
 <?php
 
 class samp {
-	use HtmlElement;
+	use HtmlBodyElement;
 }

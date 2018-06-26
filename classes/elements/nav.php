@@ -1,5 +1,5 @@
 <?php
 
 class nav {
-	use HtmlElement;
+	use HtmlBodyElement;
 }

@@ -1,5 +1,5 @@
 <?php
 
 class mark {
-	use HtmlElement;
+	use HtmlBodyElement;
 }

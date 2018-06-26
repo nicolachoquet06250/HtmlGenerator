@@ -1,5 +1,5 @@
 <?php
 
 class meta {
-	use HtmlElement;
+	use HtmlHeadElement;
 }

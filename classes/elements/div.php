@@ -1,5 +1,5 @@
 <?php
 
 class div {
-	use HtmlElement;
+	use HtmlBodyElement;
 }

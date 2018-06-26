@@ -6,5 +6,5 @@
  * @deprecated
  */
 class clin {
-	use HtmlElement;
+	use HtmlBodyElement;
 }

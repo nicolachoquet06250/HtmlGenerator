@@ -1,5 +1,5 @@
 <?php
 
 class li {
-	use HtmlElement;
+	use HtmlBodyElement;
 }

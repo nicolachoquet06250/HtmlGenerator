@@ -6,5 +6,5 @@
  * @deprecated
  */
 class listing {
-	use HtmlElement;
+	use HtmlBodyElement;
 }

@@ -2,5 +2,5 @@
 
 class ul {
 	use liste;
-	use HtmlElement;
+	use HtmlBodyElement;
 }

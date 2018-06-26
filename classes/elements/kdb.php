@@ -1,5 +1,5 @@
 <?php
 
 class kdb {
-	use HtmlElement;
+	use HtmlBodyElement;
 }

@@ -12,7 +12,7 @@
  * @method string|a 	type(string $type = null)
  */
 class a {
-	use HtmlElement;
+	use HtmlBodyElement;
 
 	protected $name = '';
 	protected $href = '';

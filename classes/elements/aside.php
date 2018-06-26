@@ -1,5 +1,5 @@
 <?php
 
 class aside {
-	use HtmlElement;
+	use HtmlBodyElement;
 }

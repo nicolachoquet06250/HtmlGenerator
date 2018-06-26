@@ -4,5 +4,5 @@
  * @deprecated
  */
 class big {
-	use HtmlElement;
+	use HtmlBodyElement;
 }

@@ -1,5 +1,5 @@
 <?php
 
 class address {
-	use HtmlElement;
+	use HtmlBodyElement;
 }

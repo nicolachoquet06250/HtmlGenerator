@@ -1,5 +1,5 @@
 <?php
 
 class title {
-	use HtmlElement;
+	use HtmlBodyElement;
 }

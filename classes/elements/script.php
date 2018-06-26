@@ -1,5 +1,5 @@
 <?php
 
 class script {
-	use HtmlElement;
+	use HtmlHeadElement;
 }

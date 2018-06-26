@@ -44,6 +44,10 @@ trait HtmlElement {
 	protected $spellcheck = 'false';
 	protected $tabindex = 0;
 
+	public function __construct($framework = false) {
+		$this->framework($framework);
+	}
+
 	public function data($name, $value) {
 		$name = "data_{$name}";
 		$this->$name = $value;

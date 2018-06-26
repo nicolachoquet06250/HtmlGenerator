@@ -1,5 +1,5 @@
 <?php
 
 class html_var {
-	use HtmlElement;
+	use HtmlBodyElement;
 }

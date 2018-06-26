@@ -1,5 +1,5 @@
 <?php
 
 class span {
-	use HtmlElement;
+	use HtmlBodyElement;
 }

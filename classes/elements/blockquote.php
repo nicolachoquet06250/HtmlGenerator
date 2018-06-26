@@ -1,5 +1,5 @@
 <?php
 
 class blockquote {
-	use HtmlElement;
+	use HtmlBodyElement;
 }
