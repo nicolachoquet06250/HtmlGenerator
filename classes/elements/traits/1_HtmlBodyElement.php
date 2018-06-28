@@ -52,9 +52,10 @@ trait HtmlBodyElement {
         }
 
         foreach ($this as $prop => $value) {
-            if($prop !== 'framework' && gettype($value) === 'array') {
+
+            if($prop !== 'framework' && $prop !== 'content' && gettype($value) === 'array') {
                 if(!empty($value)) {
-                    $str .= " {$prop}='";
+                   $str .= " {$prop}='";
                     if (isset($value[0])) {
                         $str .= implode(' ', $value);
                         $str .= "'";

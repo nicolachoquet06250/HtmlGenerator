@@ -18,7 +18,7 @@ class div extends body_not_autoclosed_tag {
         }
 
         foreach ($this as $prop => $value) {
-            if($prop !== 'framework' && gettype($value) === 'array' && $prop !== 'html') {
+            if($prop !== 'framework' && gettype($value) === 'array' && $prop !== 'html' && $prop !== 'placement') {
                 if(!empty($value)) {
                     $str .= " {$prop}='";
                     if (isset($value[0])) {

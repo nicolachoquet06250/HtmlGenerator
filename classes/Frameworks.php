@@ -6,7 +6,81 @@ namespace html_generator;
 class Frameworks {
 
 	const FROM_SCRATCH = [];
-
+    private $bootstrap_classes = [
+        'row' => 'row',
+        'col' => [
+            'xs' => [
+                'col-xs-1',
+                'col-xs-2',
+                'col-xs-3',
+                'col-xs-4',
+                'col-xs-5',
+                'col-xs-6',
+                'col-xs-7',
+                'col-xs-8',
+                'col-xs-9',
+                'col-xs-10',
+                'col-xs-11',
+                'col-xs-12'
+            ],
+            's' => [
+                'col-s-1',
+                'col-s-2',
+                'col-s-3',
+                'col-s-4',
+                'col-s-5',
+                'col-s-6',
+                'col-s-7',
+                'col-s-8',
+                'col-s-9',
+                'col-s-10',
+                'col-s-11',
+                'col-s-12'
+            ],
+            'm' => [
+                'col-m-1',
+                'col-m-2',
+                'col-m-3',
+                'col-m-4',
+                'col-m-5',
+                'col-m-6',
+                'col-m-7',
+                'col-m-8',
+                'col-m-9',
+                'col-m-10',
+                'col-m-11',
+                'col-m-12'
+            ],
+            'md' => [
+                'col-md-1',
+                'col-md-2',
+                'col-md-3',
+                'col-md-4',
+                'col-md-5',
+                'col-md-6',
+                'col-md-7',
+                'col-md-8',
+                'col-md-9',
+                'col-md-10',
+                'col-md-11',
+                'col-md-12'
+            ],
+            'lg' => [
+                'col-lg-1',
+                'col-lg-2',
+                'col-lg-3',
+                'col-lg-4',
+                'col-lg-5',
+                'col-lg-6',
+                'col-lg-7',
+                'col-lg-8',
+                'col-lg-9',
+                'col-lg-10',
+                'col-lg-11',
+                'col-lg-12'
+            ]
+        ]
+    ];
 	private static $bootstrap_versions = [
 		'v3' => [
 			'doc' => 'http://getbootstrap.com/docs/3.3/',
@@ -51,21 +125,17 @@ class Frameworks {
 		'js' => [
 			[
 				'src' => 'https://code.jquery.com/jquery-3.3.1.slim.min.js',
-				'integrity' => 'sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo'
 			],
 			[
 				'src' => 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js',
-				'integrity' => 'sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49'
 			],
 			[
 				'src' => 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js',
-				'integrity' => 'sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T'
 			]
 		],
 		'css' => [
 			[
 				'src' => 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css',
-				'integrity' => 'sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB'
 			]
 		]
 	];

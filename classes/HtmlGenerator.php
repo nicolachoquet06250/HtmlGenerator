@@ -22,6 +22,7 @@ use HtmlHeadElement;
  *
  * -- <body></body>
  * @method null|\a a(array $attrs = null)
+ * @method null|\p p(array $attrs = null)
  * @method null|\abbr abbr(array $attrs = null)
  * @method null|\acronym acronym(array $attrs = null)
  * @method null|\address address(array $attrs = null)
@@ -84,8 +85,8 @@ use HtmlHeadElement;
  * @method null|\comment comment(array $attrs = null)
  *
  *
- * @method HtmlGenerator|string head(\HtmlHeadElement $element = null)
- * @method HtmlGenerator|string body(HtmlBodyElement $element = null)
+ * @method HtmlGenerator|string head(\HtmlHeadElement|array $element = null)
+ * @method HtmlGenerator|string body(HtmlBodyElement|array $element = null)
  */
 class HtmlGenerator implements Generator
 {
@@ -131,7 +132,7 @@ class HtmlGenerator implements Generator
     /**
      * @param $name
      * @param $arguments
-     * @return null
+     * @return null|HtmlGenerator|\string
      * @throws \Exception
      */
     public function __call($name, $arguments = [])
@@ -142,9 +143,19 @@ class HtmlGenerator implements Generator
                  * @var HtmlHeadElement $element
                  */
                 if (!empty($arguments) && $arguments[0]) {
-                    $element = $arguments[0];
-                    if (in_array($element->get_name(), $this->head_balises)) {
-                        $this->head .= "{$element->display()}\n";
+                    if(gettype($arguments[0]) === 'object' && ($arguments[0] instanceof \head_not_autoclosed_tag || $arguments[0] instanceof \head_autoclosed_tag)) {
+                        $element = $arguments[0];
+                        if (in_array($element->get_name(), $this->head_balises)) {
+                            $this->head .= "{$element->display()}\n";
+                        }
+                    }
+                    elseif(gettype($arguments[0]) ==='array') {
+                        $elements = $arguments[0];
+                        foreach ($elements as $element) {
+                            if (in_array($element->get_name(), $this->head_balises)) {
+                                $this->head .= "{$element->display()}\n";
+                            }
+                        }
                     }
                     return $this;
                 }
@@ -154,8 +165,16 @@ class HtmlGenerator implements Generator
                  * @var HtmlBodyElement $element
                  */
                 if (!empty($arguments) && $arguments[0]) {
-                    $element = $arguments[0];
-                    $this->body .= "{$element->display()}\n";
+                    if(gettype($arguments[0]) === 'object' && ($arguments[0] instanceof \body_not_autoclosed_tag || $arguments[0] instanceof \body_autoclosed_tag)) {
+                        $element = $arguments[0];
+                        $this->body .= "{$element->display()}\n";
+                    }
+                    elseif (gettype($arguments[0]) === 'array') {
+                        $elements = $arguments[0];
+                        foreach ($elements as $element) {
+                            $this->body .= "{$element->display()}\n";
+                        }
+                    }
                     return $this;
                 }
                 return $this->body;
@@ -183,6 +202,5 @@ class HtmlGenerator implements Generator
                 }
                 return $element;
         }
-        return null;
     }
 }

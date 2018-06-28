@@ -45,12 +45,7 @@ try {
         ->content('mon titre');
 
     // Add tags to head page
-    $page
-        ->head($meta)
-        ->head($meta1)
-        ->head($title)
-        ->head($style)
-        ->head($script);
+    $page->head([$meta, $meta1, $title, $style, $script]);
 
     // <b> tag declaration
     $b = $page->b();
@@ -72,12 +67,29 @@ try {
         ->content('text')
         ->class(['link']);
 
+    // Add <a> tag into <p> tag
+    $p = $page->p();
+    $p->html([$a]);
+
     // comment declaration
     $comment = $page->comment();
     $comment->content(['test', 'toto']);
 
     // <div> tag declaration
-    $div1 = $page->div(['title' => 'voir un autre titre', 'html' => [$a, $b, $comment]]);
+    $div1 = $page->div(['title' => 'voir un autre titre', 'html' => [$a, $b, $comment]])
+                 ->placement(
+                     [
+                         'col' => [
+                             'm' => 2,
+                             's' => 3,
+                             'xs' => 12
+                         ],
+                         'offset' => [
+                             'm' => 10,
+                             's' => 9
+                         ]
+                     ]
+                 );
 
     // <div> tag declaration
     $div = $page->div();
@@ -92,14 +104,7 @@ try {
     $hr = $page->hr();
 
     // Add tags to body page
-    $page
-        ->body($a)
-        ->body($b)
-        ->body($br)
-        ->body($hr)
-        ->body($comment)
-        ->body($div)
-        ->body($nav);
+    $page->body([$p, $b, $br, $hr, $comment, $div, $nav]);
 
 
     // page generation

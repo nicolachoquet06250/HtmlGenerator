@@ -21,6 +21,12 @@ trait HtmlElement {
 	}
 
 	public function __call($name, $arguments) {
+	    if(in_array($name, get_class_methods($this->get_name()))) {
+	        if(isset($arguments[0])) {
+	            $arguments = $arguments[0];
+            }
+	        return $this->$name($arguments);
+        }
 		if(in_array($name, array_keys(get_object_vars($this)))) {
 			if(!(!empty($arguments) && $arguments[0])) {
 				return $this->$name;
