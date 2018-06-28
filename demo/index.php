@@ -87,12 +87,16 @@ try {
     // <nav> tag declaration
     $nav = $page->nav()->html([$b, $a])->style(['height' => 50, 'border' => [1, 'solid', 'black']]);
 
+    // <br> and <hr> tags declarations
+    $br = $page->br();
+    $hr = $page->hr();
+
     // Add tags to body page
     $page
         ->body($a)
         ->body($b)
-        ->body($page->br())
-        ->body($page->hr())
+        ->body($br)
+        ->body($hr)
         ->body($comment)
         ->body($div)
         ->body($nav);
