@@ -18,7 +18,7 @@ class div extends body_not_autoclosed_tag {
         }
 
         foreach ($this as $prop => $value) {
-            if($prop !== 'framework' && gettype($value) === 'array' && $prop !== 'html' && $prop !== 'placement') {
+            if($prop !== 'framework' && gettype($value) === 'array' && $prop !== 'html' && $prop) {
                 if(!empty($value)) {
                     $str .= " {$prop}='";
                     if (isset($value[0])) {
@@ -58,6 +58,9 @@ class div extends body_not_autoclosed_tag {
             $html[] = $html_local->display();
         }
         $html = implode("\n", $html);
+
+        $this->framework_classes();
+
         return "<{$this->get_name()}{$this->attrs()}>{$html}</{$this->get_name()}>";
     }
 }

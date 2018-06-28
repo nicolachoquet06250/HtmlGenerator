@@ -76,20 +76,20 @@ try {
     $comment->content(['test', 'toto']);
 
     // <div> tag declaration
-    $div1 = $page->div(['title' => 'voir un autre titre', 'html' => [$a, $b, $comment]])
-                 ->placement(
-                     [
-                         'col' => [
-                             'm' => 2,
-                             's' => 3,
-                             'xs' => 12
-                         ],
-                         'offset' => [
-                             'm' => 10,
-                             's' => 9
-                         ]
-                     ]
-                 );
+    $div1 = $page->div(['title' => 'voir un autre titre', 'html' => [$a, $b, $comment]]);
+    $div1->placement(
+        [
+            'col' => [
+                'm' => 2,
+                's' => 3,
+                'xs' => 12
+            ],
+            'offset' => [
+                'm' => 10,
+                's' => 9
+            ]
+        ]
+    );
 
     // <div> tag declaration
     $div = $page->div();

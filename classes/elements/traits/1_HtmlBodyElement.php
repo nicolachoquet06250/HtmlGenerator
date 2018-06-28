@@ -46,14 +46,13 @@ trait HtmlBodyElement {
     {
         $str = '';
         foreach ($this as $prop => $value) {
-            if($prop !== 'framework' && $prop !== 'content' && $value !== '' && gettype($value) !== 'array') {
+            if($prop !== 'framework' && $prop !== 'content' && $value !== '' && gettype($value) !== 'array' && $prop !== 'placement') {
                 $str .= " {$prop}='{$value}'";
             }
         }
 
         foreach ($this as $prop => $value) {
-
-            if($prop !== 'framework' && $prop !== 'content' && gettype($value) === 'array') {
+            if($prop !== 'framework' && $prop !== 'content' && gettype($value) === 'array' && $prop !== 'placement') {
                 if(!empty($value)) {
                    $str .= " {$prop}='";
                     if (isset($value[0])) {
@@ -90,4 +89,6 @@ trait HtmlBodyElement {
     {
         return "<{$this->get_name()}{$this->attrs()}>{$this->content()}</{$this->get_name()}>";
     }
+
+    public function framework_classes() {}
 }
