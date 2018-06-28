@@ -1,5 +1,5 @@
 <?php
 
-class dfn {
-	use HtmlBodyElement;
+class dfn extends body_not_autoclosed_tag {
+
 }

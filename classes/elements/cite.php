@@ -1,5 +1,5 @@
 <?php
 
-class cite {
-	use HtmlBodyElement;
+class cite extends body_not_autoclosed_tag {
+
 }

@@ -1,5 +1,5 @@
 <?php
 
-class samp {
-	use HtmlBodyElement;
+class samp extends body_not_autoclosed_tag {
+
 }

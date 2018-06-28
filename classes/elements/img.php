@@ -1,5 +1,5 @@
 <?php
 
-class img {
-	use HtmlBodyElement;
+class img extends body_autoclosed_tag {
+
 }

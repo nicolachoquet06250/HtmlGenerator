@@ -1,5 +1,5 @@
 <?php
 
-class base {
-	use HtmlBodyElement;
+class base extends head_autoclosed_tag {
+
 }

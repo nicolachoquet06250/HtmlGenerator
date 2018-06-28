@@ -1,5 +1,5 @@
 <?php
 
-class aside {
-	use HtmlBodyElement;
+class aside extends body_not_autoclosed_tag {
+
 }

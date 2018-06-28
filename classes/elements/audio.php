@@ -1,5 +1,5 @@
 <?php
 
-class audio {
-	use HtmlBodyElement;
+class audio extends body_not_autoclosed_tag {
+
 }

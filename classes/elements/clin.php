@@ -5,6 +5,6 @@
  *
  * @deprecated
  */
-class clin {
-	use HtmlBodyElement;
+class clin extends body_not_autoclosed_tag {
+
 }

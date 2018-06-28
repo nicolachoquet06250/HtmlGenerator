@@ -3,7 +3,7 @@
 trait HtmlHeadElement {
 	use HtmlElement;
 
-	public function display(): string
+	public function display($html = null): string
     {
         return "<{$this->get_name()} {$this->attrs()} />";
     }

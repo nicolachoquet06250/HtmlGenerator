@@ -5,13 +5,12 @@
  *
  * @method array|style content(array $content = null)
  */
-class style
+class style extends head_not_autoclosed_tag
 {
-    use HtmlHeadElement;
 
     protected $content = [];
 
-    public function display(): string
+    public function display($html = null): string
     {
         $str = '';
 

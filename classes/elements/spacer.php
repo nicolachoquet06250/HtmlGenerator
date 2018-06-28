@@ -5,8 +5,8 @@
  *
  * @deprecated
  */
-class spacer {
-	use HtmlBodyElement;
+class spacer extends body_not_autoclosed_tag {
+
 
 	const HORIZONTAL = 'horizontal';
 	const VERTICAL = 'vertical';

@@ -1,5 +1,5 @@
 <?php
 
-class nav {
-	use HtmlBodyElement;
+class nav extends div {
+	//
 }

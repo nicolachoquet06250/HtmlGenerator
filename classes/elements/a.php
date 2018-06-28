@@ -11,8 +11,7 @@
  * @method string|a 	media(string $media = null)
  * @method string|a 	type(string $type = null)
  */
-class a {
-	use HtmlBodyElement;
+class a extends body_not_autoclosed_tag {
 
 	protected $name = '';
 	protected $href = '';

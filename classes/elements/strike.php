@@ -3,6 +3,6 @@
 /**
  * @deprecated
  */
-class strike {
-	use HtmlBodyElement;
+class strike extends body_not_autoclosed_tag {
+
 }

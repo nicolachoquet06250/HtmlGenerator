@@ -66,7 +66,15 @@ trait HtmlBodyElement {
                                     $sous_value[$id] .= gettype($item) === 'integer' ? 'px' : '';
                                 }
                             }
-                            $str .= gettype($sous_value) === 'array' ? implode(' ', $sous_value) : $sous_value;
+                            if(gettype($sous_value) === 'integer') {
+                                $sous_value .= 'px';
+                            }
+                            if(gettype($sous_value) === 'array') {
+                                $str .= implode(' ', $sous_value);
+                            }
+                            else {
+                                $str .= $sous_value;
+                            }
                             $str .= ';';
                         }
                         $str .= "'";
@@ -77,7 +85,7 @@ trait HtmlBodyElement {
         return $str;
     }
 
-	public function display(): string
+	public function display($html = null): string
     {
         return "<{$this->get_name()}{$this->attrs()}>{$this->content()}</{$this->get_name()}>";
     }

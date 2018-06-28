@@ -1,9 +1,8 @@
 <?php
 
-class br {
-	use HtmlBodyElement;
+class br extends body_autoclosed_tag {
 
-	public function display(): string
+	public function display($html = null): string
     {
         return '<br />';
     }

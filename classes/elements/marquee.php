@@ -5,8 +5,7 @@
  *
  * @deprecated
  */
-class marquee {
-	use HtmlBodyElement;
+class marquee extends body_not_autoclosed_tag {
 
 	const SCROLL = 'scroll';
 	const SLIDE = 'slide';

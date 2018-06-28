@@ -5,6 +5,6 @@
  *
  * @deprecated
  */
-class xmp {
-	use HtmlBodyElement;
+class xmp extends body_not_autoclosed_tag {
+
 }

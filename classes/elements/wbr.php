@@ -1,5 +1,5 @@
 <?php
 
-class wbr {
-	use HtmlBodyElement;
+class wbr extends body_not_autoclosed_tag {
+
 }

@@ -1,5 +1,5 @@
 <?php
 
-class section {
-	use HtmlBodyElement;
+class section extends body_not_autoclosed_tag {
+
 }

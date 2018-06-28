@@ -8,8 +8,7 @@
  * @method string|link rel(string $rel = null)
  * @method string|link type(string $type = null)
  */
-class link {
-	use HtmlHeadElement;
+class link extends head_autoclosed_tag {
 
 	protected $href = '';
 	protected $integrity = '';
@@ -22,7 +21,7 @@ class link {
         foreach ($this as $attr => $value) {
             if($attr !== 'framework') {
                 if(gettype($value) !== 'array') {
-                    $str .= "{$attr}='{$value}' ";
+                    $str .= " {$attr}='{$value}' ";
                 }
             }
         }

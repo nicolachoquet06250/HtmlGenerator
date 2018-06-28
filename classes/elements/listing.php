@@ -5,6 +5,6 @@
  *
  * @deprecated
  */
-class listing {
-	use HtmlBodyElement;
+class listing extends body_not_autoclosed_tag {
+
 }

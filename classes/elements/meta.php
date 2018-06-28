@@ -7,8 +7,7 @@
  * @method string|meta name(string $name = null)
  * @method string|meta content(string $content = null)
  */
-class meta {
-	use HtmlHeadElement;
+class meta extends head_autoclosed_tag {
 
 	protected $charset = '';
 	protected $name = '';
@@ -17,10 +16,10 @@ class meta {
 	public function attrs()
     {
         if($this->charset() !== '') {
-            $str = "charset='{$this->charset()}'";
+            $str = " charset='{$this->charset()}'";
         }
         else {
-            $str = "name='{$this->name()}' content='{$this->content()}'";
+            $str = " name='{$this->name()}' content='{$this->content()}'";
         }
 
         return $str;

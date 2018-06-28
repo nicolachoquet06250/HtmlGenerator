@@ -12,6 +12,34 @@ while (($file = readdir($dir)) !== false) {
 	}
 }
 
+$dir = opendir('../classes/elements/extended');
+
+while (($file = readdir($dir)) !== false) {
+    if($file !== '.' && $file !== '..') {
+        if(is_file("../classes/elements/extended/{$file}")) {
+            $required[] = "../classes/elements/extended/{$file}";
+        }
+        else {
+            $_dir = opendir("../classes/elements/extended/{$file}");
+            while (($_file = readdir($_dir)) !== false) {
+                if($_file !== '.' && $file !== '..') {
+                    if(is_file("../classes/elements/extended/{$file}/{$_file}")) {
+                        $required[] = "../classes/elements/extended/{$file}/{$_file}";
+                    }
+                }
+            }
+        }
+    }
+}
+
+$dir = opendir('../classes/templating');
+
+while (($file = readdir($dir)) !== false) {
+    if($file !== '.' && $file !== '..') {
+        $required[] = "../classes/templating/{$file}";
+    }
+}
+
 $dir = opendir('../classes/elements');
 
 while (($file = readdir($dir)) !== false) {

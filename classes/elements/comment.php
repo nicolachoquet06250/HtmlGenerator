@@ -5,11 +5,10 @@
  *
  * @method array|comment content(array $content = null)
  */
-class comment
+class comment extends body_not_autoclosed_tag
 {
-    use HtmlBodyElement;
 
-    public function display(): string
+    public function display($html = null): string
     {
         $content = $this->content();
         if(count($this->content()) > 1) {

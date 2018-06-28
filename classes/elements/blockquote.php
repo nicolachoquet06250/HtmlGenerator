@@ -1,5 +1,5 @@
 <?php
 
-class blockquote {
-	use HtmlBodyElement;
+class blockquote extends body_not_autoclosed_tag {
+
 }

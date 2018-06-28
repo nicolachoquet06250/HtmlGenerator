@@ -5,6 +5,6 @@
  *
  * @deprecated
  */
-class nextid {
-	use HtmlBodyElement;
+class nextid extends body_not_autoclosed_tag {
+
 }

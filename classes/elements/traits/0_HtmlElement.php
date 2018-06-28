@@ -59,7 +59,7 @@ trait HtmlElement {
 		return $this->content($content);
 	}
 
-	public function display():string {
+	public function display($html = null):string {
 		return $this->content();
 	}
 

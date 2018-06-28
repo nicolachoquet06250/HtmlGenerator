@@ -1,5 +1,5 @@
 <?php
 
-class ruby {
-	use HtmlBodyElement;
+class ruby extends body_not_autoclosed_tag {
+
 }

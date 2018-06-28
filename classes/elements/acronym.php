@@ -5,6 +5,6 @@
  *
  * @deprecated
  */
-class acronym {
-	use HtmlBodyElement;
+class acronym extends body_not_autoclosed_tag {
+
 }

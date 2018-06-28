@@ -7,26 +7,20 @@ use \html_generator\Frameworks;
 require_once 'Autoload.php';
 
 try {
-    $generateur = new \html_generator\HtmlGenerator(Frameworks::BOOTSTRAP());
+    // Factory declaration
+    $page = new \html_generator\HtmlGenerator(Frameworks::BOOTSTRAP());
 
-
-    $meta = $generateur->meta();
+    // Meta charset declaration
+    $meta = $page->meta();
     $meta->charset('utf-8');
 
-    $generateur->reset();
-    $meta1 = $generateur->meta();
-    $meta1->name('description');
-    $meta1->content('voila une description');
+    // meta description declaration
+    $meta1 = $page->meta();
+    $meta1  ->name('description')
+            ->content('voila une description');
 
-    $link = $generateur->link()
-        ->href('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
-        ->integrity('sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp');
-
-    $script = $generateur->script()
-        ->src('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
-        ->integrity('sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp');
-
-    $style = $generateur->style()
+    // Style declaration
+    $style = $page->style()
         ->content([
             '#array' => [
                 'border' => [1, 'solid', 'black'],
@@ -34,50 +28,81 @@ try {
             ]
         ]);
 
-    $title = $generateur->title()
+    // Javascript script declaration
+    $link_color = 'red';
+    $script = $page->script()->content(
+        // Template Javascript dans lequel on peux mettre des variables
+        JsTemplate::instence(
+            'script.js',
+            [
+                'color' => $link_color
+            ]
+        )->display()
+    );
+
+    // Page title declaration
+    $title = $page->title()
         ->content('mon titre');
 
-    $generateur
+    // Add tags to head page
+    $page
         ->head($meta)
         ->head($meta1)
-        ->head($link)
-        ->head($script)
+        ->head($title)
         ->head($style)
-        ->head($title);
+        ->head($script);
 
-    $b = $generateur->b();
-    $b->id('test');
-    $b->title('mon titre');
-    $b->style(['color' => 'blue']);
-    $b->style(['border' => [1, 'solid', 'black']]);
-    $b->class([
-        'ma_classe',
-        'col',
-        'm1',
-        's12'
-    ]);
-    $b->content('test de text en gras');
+    // <b> tag declaration
+    $b = $page->b();
+    $b  ->id('test')
+        ->title('mon titre')
+        ->style(['color' => 'blue'])
+        ->style(['border' => [1, 'solid', 'black']])
+        ->class([
+            'ma_classe',
+            'col',
+            'm1',
+            's12'
+        ])
+        ->content('test de text en gras');
 
-    $a = $generateur->a();
-    $a->href('index.php?mavariable=2')
+    // <a> tag declaration
+    $a = $page->a();
+    $a  ->href('index.php?mavariable=2')
         ->content('text')
-        ->style(['color' => 'red']);
+        ->class(['link']);
 
-    $comment = $generateur->comment();
+    // comment declaration
+    $comment = $page->comment();
     $comment->content(['test', 'toto']);
 
-    $generateur
+    // <div> tag declaration
+    $div1 = $page->div(['title' => 'voir un autre titre', 'html' => [$a, $b, $comment]]);
+
+    // <div> tag declaration
+    $div = $page->div();
+    $div->title('ma div');
+    $div->html([$b, $a, $comment, $div1])->style(['height' => 50, 'border' => [1, 'solid', 'black']]);
+
+    // <nav> tag declaration
+    $nav = $page->nav()->html([$b, $a])->style(['height' => 50, 'border' => [1, 'solid', 'black']]);
+
+    // Add tags to body page
+    $page
         ->body($a)
         ->body($b)
-        ->body($generateur->br())
-        ->body($generateur->hr())
-        ->body($comment);
+        ->body($page->br())
+        ->body($page->hr())
+        ->body($comment)
+        ->body($div)
+        ->body($nav);
 
 
+    // page generation
     if(!is_dir('./generated')) {
         mkdir('./generated/', 0777, true);
     }
-    file_put_contents('./generated/index.html', $generateur->display()."\n");
+    file_put_contents('./generated/index.html', $page->display()."\n");
     include './generated/index.html';
 }
 catch (Exception $e) {

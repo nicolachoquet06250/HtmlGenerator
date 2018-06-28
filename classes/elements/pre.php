@@ -1,5 +1,5 @@
 <?php
 
-class pre {
-	use HtmlBodyElement;
+class pre extends body_not_autoclosed_tag {
+
 }

@@ -9,8 +9,7 @@
  *
  * @deprecated
  */
-class basefont {
-	use HtmlBodyElement;
+class basefont extends body_not_autoclosed_tag {
 
 	protected $color = '#FFFFFF';
 	protected $face = '';

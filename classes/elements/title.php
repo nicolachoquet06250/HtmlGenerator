@@ -5,12 +5,11 @@
  *
  * @method string|title content(string $content = null)
  */
-class title {
-	use HtmlHeadElement;
+class title extends head_not_autoclosed_tag {
 
 	protected $content = '';
 
-	public function display(): string
+	public function display($html = null): string
     {
         return "<{$this->get_name()}>{$this->content()}</{$this->get_name()}>";
     }

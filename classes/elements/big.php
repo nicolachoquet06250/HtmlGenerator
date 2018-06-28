@@ -3,6 +3,6 @@
 /**
  * @deprecated
  */
-class big {
-	use HtmlBodyElement;
+class big extends body_not_autoclosed_tag {
+
 }
