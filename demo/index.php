@@ -63,8 +63,6 @@ try {
     ]);
 
     $col6_2 = clone $col6;
-    $col6_3 = clone $col6;
-    $col6_4 = clone $col6;
 
     $span1 = $page->span(['html' => [
         ($page->b()('Voici une div de {nb}/12'))->class(['yellow'])
@@ -77,29 +75,36 @@ try {
     $row->html([
         $col6->html([$span1]),
         $col6_2->html([$span2]),
-        $col6_3->html([$span2]),
-        $col6_4->html([$span2]),
+        $col6_2,
+        $col6,
         $col6
     ]);
 
     $nb_col = count($row->html());
 
-    $span1->html()[0]->content(str_replace('{nb}', $nb_col, $span1->html()[0]->content()));
-    $span2->html()[0]->content(str_replace('{nb}', $nb_col, $span2->html()[0]->content()));
+    $span1->html()[0]
+          ->content(str_replace('{nb}', $nb_col, $span1->html()[0]
+                                                             ->content()));
+    $span2->html()[0]
+          ->content(str_replace('{nb}', $nb_col, $span2->html()[0]
+                                                             ->content()));
 
-    $container->html([$row]);
+    $container->html([
+        $row
+    ]);
     // Add tags to body page
-    $page->body([$container]);
+    $page->body([
+        $container
+    ]);
 
 
     // page generation
+    echo $page->display();
     /*if(!is_dir('./generated')) {
         mkdir('./generated/', 0777, true);
     }
     file_put_contents('./generated/index.html', $page->display()."\n");
     include './generated/index.html';*/
-
-    echo $page->display();
 }
 catch (Exception $e) {
 	exit($e->getMessage()."\n");
