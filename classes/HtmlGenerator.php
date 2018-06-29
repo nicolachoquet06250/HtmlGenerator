@@ -82,6 +82,8 @@ use HtmlHeadElement;
  * @method null|\wbr wbr(array $attrs = null)
  * @method null|\xmp xmp(array $attrs = null)
  *
+ * @method null|\text text(array $attr = null)
+ *
  * @method null|\comment comment(array $attrs = null)
  *
  *
@@ -179,7 +181,6 @@ class HtmlGenerator implements Generator
                 }
                 return $this->body;
             default:
-                $this->last_balise = $name;
                 $classname = $name === 'var' ? 'html_var' : $name;
                 $framework = $this->framework === Frameworks::FROM_SCRATCH ? false : $this->framework;
 

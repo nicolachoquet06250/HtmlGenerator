@@ -21,48 +21,52 @@ trait HtmlElement {
 	}
 
 	public function __call($name, $arguments) {
+	    // place un attribut data-$name sur un tag
+        if($name === 'data') {
+            if(count($arguments) === 1 || count($arguments) === 2) {
+                $arguments[1] = isset($arguments[1]) ? $arguments[1] : null;
+                return $this->data($arguments[0], $arguments[1]);
+            }
+        }
+	    // vérifie que le nom de méthode recherchée est bien une méthode de l'objet
 	    if(in_array($name, get_class_methods($this->get_name()))) {
 	        if(isset($arguments[0])) {
 	            $arguments = $arguments[0];
             }
 	        return $this->$name($arguments);
         }
+        // vérifie que le nom de méthode recherchée est bien une propriété de la classe
 		if(in_array($name, array_keys(get_object_vars($this)))) {
-			if(!(!empty($arguments) && $arguments[0])) {
-				return $this->$name;
+		    // si il n'y a pas de paramètre, retourner la valeur de l'attribut demandé
+			if(empty($arguments)) {
+                return $this->$name;
 			}
 
+            // si il y a un commentaire, et que c'est un tableau
 			if(gettype($arguments[0]) === 'array') {
 			    foreach ($arguments[0] as $key => $valeur) {
-			        if(gettype($key) === 'integer') {
-			            if(gettype($this->$name) === 'string' || $this->$name === null) {
-			                $this->$name = [];
-                        }
-                    }
+			        if(gettype($key) === 'integer'
+                        && (gettype($this->$name) === 'string' || $this->$name === null)) {
+			            $this->$name = [];
+			        }
 					$this->$name[$key] = $valeur;
 				}
 			}
+			// sinon, on affecte la valeur en paramètre à l'attribut
 			else {
 				$this->$name = $arguments[0];
 			}
 
-
 			return $this;
-		}
-		if($name === 'data') {
-		    if(count($arguments) === 1 || count($arguments) === 2) {
-		        $arguments[1] = isset($arguments[1]) ? $arguments[1] : null;
-                return $this->data($arguments[0], $arguments[1]);
-            }
 		}
 		return null;
 	}
 
 	public function __invoke($content = '') {
-		if($content === '') {
-			return $this->content();
+		if($content !== '') {
+			return $this->content($content);
 		}
-		return $this->content($content);
+		return $this;
 	}
 
 	public function display($html = null):string {
@@ -76,4 +80,5 @@ trait HtmlElement {
     protected function attrs() {
         return '';
     }
+
 }

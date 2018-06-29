@@ -18,7 +18,7 @@ class div extends body_not_autoclosed_tag {
         }
 
         foreach ($this as $prop => $value) {
-            if($prop !== 'framework' && gettype($value) === 'array' && $prop !== 'html' && $prop) {
+            if($prop !== 'framework' && gettype($value) === 'array' && $prop !== 'html') {
                 if(!empty($value)) {
                     $str .= " {$prop}='";
                     if (isset($value[0])) {
@@ -61,6 +61,10 @@ class div extends body_not_autoclosed_tag {
 
         $this->framework_classes();
 
-        return "<{$this->get_name()}{$this->attrs()}>{$html}</{$this->get_name()}>";
+        $retour = "<{$this->get_name()}{$this->attrs()}>{$html}</{$this->get_name()}>";
+        preg_replace_callback('`placement=\'[^\']+\'`', function ($matches) use (&$retour) {
+            $retour = str_replace(' '.$matches[0], '', $retour);
+        }, $retour);
+        return $retour;
     }
 }

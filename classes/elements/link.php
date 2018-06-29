@@ -19,9 +19,9 @@ class link extends head_autoclosed_tag {
     {
         $str = '';
         foreach ($this as $attr => $value) {
-            if($attr !== 'framework') {
+            if($attr !== 'framework' && $value !== '' && $attr !== 'content') {
                 if(gettype($value) !== 'array') {
-                    $str .= " {$attr}='{$value}' ";
+                    $str .= " {$attr}='{$value}'";
                 }
             }
         }

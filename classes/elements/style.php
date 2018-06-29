@@ -15,19 +15,28 @@ class style extends head_not_autoclosed_tag
         $str = '';
 
         foreach ($this->content() as $selector => $value) {
-            $str .= "{$selector} {";
-            foreach ($value as $prop => $valeur) {
-                if(gettype($valeur) === 'array') {
-                    foreach ($valeur as $id => $item) {
-                        if (gettype($item) === 'integer') {
-                            $valeur[$id] = "{$item}px";
+            if(gettype($value) === 'object' && get_class($value) === 'CssTemplate') {
+                /**
+                 * @var CssTemplate $value
+                 */
+                $str .= $value->display();
+            }
+            else {
+                $str .= "{$selector} {";
+                foreach ($value as $prop => $valeur) {
+                    if (gettype($valeur) === 'array') {
+                        foreach ($valeur as $id => $item) {
+                            if (gettype($item) === 'integer') {
+                                $valeur[$id] = "{$item}px";
+                            }
                         }
                     }
+                    $valeur = (gettype($valeur) === 'array') ? implode(' ', $valeur) : $valeur;
+                    $valeur .= (gettype($valeur) === 'integer') ? 'px' : '';
+                    $str .= "{$prop}: {$valeur};";
                 }
-                $valeur = (gettype($valeur) === 'array') ? implode(' ', $valeur) : $valeur;
-                $str .= "{$prop}: {$valeur};";
+                $str .= "}";
             }
-            $str .= "}";
         };
 
         return "<style>{$str}</style>";

@@ -16,24 +16,23 @@ try {
 
     // meta description declaration
     $meta1 = $page->meta();
-    $meta1  ->name('description')
-            ->content('voila une description');
+    $meta1->name('description')('voila une description');
 
     // Style declaration
-    $style = $page->style()
-        ->content([
-            '#array' => [
-                'border' => [1, 'solid', 'black'],
-                'color' => 'blue'
-            ]
-        ]);
+    $border_color = 'black';
+    $style = $page->style()([CssTemplate::instence(
+        'styles',
+        [
+            'color' => $border_color,
+        ]
+    )]);
 
     // Javascript script declaration
     $link_color = 'red';
-    $script = $page->script()->content(
+    $script = $page->script()(
         // Template Javascript dans lequel on peux mettre des variables
         JsTemplate::instence(
-            'script.js',
+            'script',
             [
                 'color' => $link_color
             ]
@@ -41,78 +40,66 @@ try {
     );
 
     // Page title declaration
-    $title = $page->title()
-        ->content('mon titre');
+    $title = $page->title()('mon titre');
 
     // Add tags to head page
     $page->head([$meta, $meta1, $title, $style, $script]);
-
-    // <b> tag declaration
-    $b = $page->b();
-    $b  ->id('test')
-        ->title('mon titre')
-        ->style(['color' => 'blue'])
-        ->style(['border' => [1, 'solid', 'black']])
-        ->class([
-            'ma_classe',
-            'col',
-            'm1',
-            's12'
-        ])
-        ->content('test de text en gras');
-
-    // <a> tag declaration
-    $a = $page->a();
-    $a  ->href('index.php?mavariable=2')
-        ->content('text')
-        ->class(['link']);
-
-    // Add <a> tag into <p> tag
-    $p = $page->p();
-    $p->html([$a]);
-
-    // comment declaration
-    $comment = $page->comment();
-    $comment->content(['test', 'toto']);
-
-    // <div> tag declaration
-    $div1 = $page->div(['title' => 'voir un autre titre', 'html' => [$a, $b, $comment]]);
-    $div1->placement(
-        [
-            'col' => [
-                'm' => 2,
-                's' => 3,
-                'xs' => 12
-            ],
-            'offset' => [
-                'm' => 10,
-                's' => 9
-            ]
-        ]
-    );
-
-    // <div> tag declaration
-    $div = $page->div();
-    $div->title('ma div');
-    $div->html([$b, $a, $comment, $div1])->style(['height' => 50, 'border' => [1, 'solid', 'black']]);
-
-    // <nav> tag declaration
-    $nav = $page->nav()->html([$b, $a])->style(['height' => 50, 'border' => [1, 'solid', 'black']]);
 
     // <br> and <hr> tags declarations
     $br = $page->br();
     $hr = $page->hr();
 
+    $container = $page->div();
+    $container->placement(['container']);
+
+    $row = $page->div([
+        'style' => ['height' => 50],
+        'placement' => ['row']
+    ]);
+
+    $col6 = $page->div([
+        'class' => ['height_50', 'bg_red', 'border'],
+        'placement' => ['col' => ['xs' => 'auto']]
+    ]);
+
+    $col6_2 = clone $col6;
+    $col6_3 = clone $col6;
+    $col6_4 = clone $col6;
+
+    $span1 = $page->span(['html' => [
+        ($page->b()('Voici une div de {nb}/12'))->class(['yellow'])
+    ]]);
+
+    $span2 = $page->span(['html' => [
+        ($page->b()('Voici une autre div de {nb}/12'))->class(['yellow'])
+    ]]);
+
+    $row->html([
+        $col6->html([$span1]),
+        $col6_2->html([$span2]),
+        $col6_3->html([$span2]),
+        $col6_4->html([$span2]),
+        $col6
+    ]);
+
+    $nb_col = count($row->html());
+
+    $span1->html()[0]->content(str_replace('{nb}', $nb_col, $span1->html()[0]->content()));
+    $span2->html()[0]->content(str_replace('{nb}', $nb_col, $span2->html()[0]->content()));
+
+    $container->html([$row]);
     // Add tags to body page
-    $page->body([$p, $b, $br, $hr, $comment, $div, $nav]);
+    $page->body([$container]);
 
 
     // page generation
-    if(!is_dir('./generated')) {
+    /*if(!is_dir('./generated')) {
         mkdir('./generated/', 0777, true);
     }
     file_put_contents('./generated/index.html', $page->display()."\n");
-    include './generated/index.html';
+    include './generated/index.html';*/
+
+    echo $page->display();
 }
 catch (Exception $e) {
 	exit($e->getMessage()."\n");

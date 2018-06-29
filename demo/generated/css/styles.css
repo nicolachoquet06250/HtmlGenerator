@@ -1,0 +1,15 @@
+.bg_red {
+    background-color: red;
+}
+
+.yellow {
+    color: yellow;
+}
+
+.height_50 {
+    height: 50px;
+}
+
+.border {
+    border: 1px solid #color;
+}
