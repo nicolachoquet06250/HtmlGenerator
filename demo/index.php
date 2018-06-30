@@ -72,12 +72,30 @@ try {
         ($page->b()('Voici une autre div de {nb}/12'))->class(['yellow'])
     ]]);
 
+    $w100 = $page->div()->placement(['w' => 100]);
+
     $row->html([
         $col6->html([$span1]),
         $col6_2->html([$span2]),
         $col6_2,
         $col6,
-        $col6
+        $col6,
+
+        $w100,
+
+        $col6->html([$span1]),
+        $col6_2->html([$span2]),
+        $col6_2,
+        $col6,
+        $col6,
+
+        $w100,
+
+        $col6->html([$span1]),
+        $col6_2->html([$span2]),
+        $col6_2,
+        $col6,
+        $col6,
     ]);
 
     $nb_col = count($row->html());

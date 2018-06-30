@@ -75,6 +75,10 @@ class body_not_autoclosed_tag
         $this->class($classes);
     }
 
+    /**
+     * @param null|array $placement
+     * @return $this|array
+     */
     public function placement($placement = null) {
         if($placement === null) {
             return $this->placement;
