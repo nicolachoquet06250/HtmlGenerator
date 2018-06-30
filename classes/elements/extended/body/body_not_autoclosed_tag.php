@@ -8,32 +8,7 @@ class body_not_autoclosed_tag
     use HtmlBodyElement;
 
     protected $placement = [];
-
-    private function add_to_classes_from_placement(&$classes, $framework_origin, $framework_actual, $class, $val) {
-        if (gettype($val) === 'array') {
-            foreach ($val as $sous_class => $sous_val) {
-                if(isset($this->framework()['classes'][$class][$sous_class][$sous_val])) {
-                    if(!in_array($this->framework()['classes'][$class][$sous_class][$sous_val], $this->class())) {
-                        $classes[] = $this->framework()['classes'][$class][$sous_class][$sous_val];
-                    }
-                }
-            }
-        }
-        else {
-            if(gettype($class) === 'integer') {
-                if (isset($this->framework()['classes'][$val])) {
-                    if(!in_array($this->framework()['classes'][$val], $this->class())) {
-                        $classes[] = $this->framework()['classes'][$val];
-                    }
-                }
-            }
-            else {
-                if (isset($this->framework()['classes'][$class][$val])) {
-                    $classes[] = $this->framework()['classes'][$class][$val];
-                }
-            }
-        }
-    }
+    protected $vars = [];
 
     public function framework_classes()
     {
@@ -76,6 +51,18 @@ class body_not_autoclosed_tag
     }
 
     /**
+     * @param null $vars
+     * @return body_not_autoclosed_tag|array
+     */
+    public function vars($vars = null) {
+        if($vars !== null) {
+            $this->vars = $vars;
+            return $this;
+        }
+        return $this->vars;
+    }
+
+    /**
      * @param null|array $placement
      * @return $this|array
      */
@@ -94,6 +81,9 @@ class body_not_autoclosed_tag
         if(!$html) {
             if ($this->content()) {
                 $html = $this->content();
+                foreach ($this->vars as $var => $value) {
+                    $html = str_replace("{{$var}}", $value, $html);
+                }
             } else {
                 $html = '';
             }

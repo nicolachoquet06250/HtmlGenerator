@@ -81,4 +81,20 @@ trait HtmlElement {
         return '';
     }
 
+    /**
+     * @return HtmlElement
+     */
+    public function get_void_copy() {
+	    $class = get_class($this);
+
+	    return new $class();
+    }
+
+    /**
+     * @return HtmlElement
+     */
+    public function get_copy() {
+        return clone $this;
+    }
+
 }

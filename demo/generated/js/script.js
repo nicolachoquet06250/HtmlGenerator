@@ -1,5 +1,6 @@
+
 $(window).ready(() => {
-    document.querySelectorAll('.link').forEach((link) => {
-        link.style.color = '{color}';
+    document.querySelectorAll('.yellow').forEach((yellow) => {
+        yellow.innerHTML += '{color} ';
     });
 });

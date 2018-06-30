@@ -8,7 +8,7 @@ require_once 'Autoload.php';
 
 try {
     // Factory declaration
-    $page = new \html_generator\HtmlGenerator(Frameworks::BOOTSTRAP());
+    $page = new \html_generator\HtmlGenerator(Frameworks::BOOTSTRAP('v3'));
 
     // Meta charset declaration
     $meta = $page->meta();
@@ -34,7 +34,7 @@ try {
         JsTemplate::instence(
             'script',
             [
-                'color' => $link_color
+                'color' => $page->br()->display().$link_color
             ]
         )->display()
     );
@@ -57,58 +57,42 @@ try {
         'placement' => ['row']
     ]);
 
-    $col6 = $page->div([
+    $col3 = $page->div([
         'class' => ['height_50', 'bg_red', 'border'],
-        'placement' => ['col' => ['xs' => 'auto']]
+        'placement' => ['col' => ['xs' => 3]]
     ]);
-
-    $col6_2 = clone $col6;
 
     $span1 = $page->span(['html' => [
         ($page->b()('Voici une div de {nb}/12'))->class(['yellow'])
     ]]);
 
     $span2 = $page->span(['html' => [
+        ($page->span())->placement(['icon' => 'ok'])->class(['yellow']),
         ($page->b()('Voici une autre div de {nb}/12'))->class(['yellow'])
     ]]);
 
-    $w100 = $page->div()->placement(['w' => 100]);
+    $col6_2 = $col3->get_copy()->html([$span2]);
 
-    $row->html([
-        $col6->html([$span1]),
-        $col6_2->html([$span2]),
+    $col3->html([$span1]);
+
+    $cols = [
+        $col3,
         $col6_2,
-        $col6,
-        $col6,
-
-        $w100,
-
-        $col6->html([$span1]),
-        $col6_2->html([$span2]),
         $col6_2,
-        $col6,
-        $col6,
+        $col3,
+    ];
 
-        $w100,
+    $nb_col = count($cols);
 
-        $col6->html([$span1]),
-        $col6_2->html([$span2]),
-        $col6_2,
-        $col6,
-        $col6,
-    ]);
+    $row->html($cols)->vars(['nb' => $nb_col]);
 
-    $nb_col = count($row->html());
-
-    $span1->html()[0]
-          ->content(str_replace('{nb}', $nb_col, $span1->html()[0]
-                                                             ->content()));
-    $span2->html()[0]
-          ->content(str_replace('{nb}', $nb_col, $span2->html()[0]
-                                                             ->content()));
+    $row_2 = clone $row;
+    $row_3 = clone $row;
 
     $container->html([
-        $row
+        $row,
+        $row_2,
+        $row_3,
     ]);
     // Add tags to body page
     $page->body([

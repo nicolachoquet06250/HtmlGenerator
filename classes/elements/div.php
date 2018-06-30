@@ -4,6 +4,8 @@
  * Class div
  *
  * @method array|div html(array $html = null)
+ * @method div get_copy()
+ * @method div get_void_copy()
  */
 class div extends body_not_autoclosed_tag {
 
@@ -58,6 +60,9 @@ class div extends body_not_autoclosed_tag {
             $html[] = $html_local->display();
         }
         $html = implode("\n", $html);
+        foreach ($this->vars as $var => $value) {
+            $html = str_replace("{{$var}}", $value, $html);
+        }
 
         $this->framework_classes();
 

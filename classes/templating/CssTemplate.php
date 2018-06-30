@@ -14,6 +14,7 @@ class CssTemplate
         foreach ($this->vars as $var => $value) {
             $template = str_replace("#{$var}", $value, $template);
         }
+        $template = str_replace("\n", '', $template);
         return $template;
     }
 
