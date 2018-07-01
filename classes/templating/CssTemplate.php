@@ -12,9 +12,13 @@ class CssTemplate
     public function display() {
         $template = file_get_contents($this->path);
         foreach ($this->vars as $var => $value) {
-            $template = str_replace("#{$var}", $value, $template);
+            $template = str_replace("#{$var}#", $value, $template);
         }
         $template = str_replace("\n", '', $template);
+        preg_replace_callback('`\#([A-Za-z0-9\-\_\?\.]+)\#`', function ($matches) use (&$template) {
+            var_dump($matches);
+            $template = str_replace($matches[0], '', $template);
+        }, $template);
         return $template;
     }
 

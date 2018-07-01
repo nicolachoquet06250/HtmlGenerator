@@ -19,7 +19,7 @@ try {
     $meta1->name('description')('voila une description');
 
     // Style declaration
-    $border_color = 'black';
+    $border_color = 'red';
     $style = $page->style()([CssTemplate::instence(
         'styles',
         [
@@ -34,7 +34,7 @@ try {
         JsTemplate::instence(
             'script',
             [
-                'color' => $page->br()->display().$link_color
+                'color' => $link_color
             ]
         )->display()
     );
@@ -69,7 +69,7 @@ try {
     $span2 = $page->span(['html' => [
         ($page->span())->placement(['icon' => 'ok'])->class(['yellow']),
         ($page->b()('Voici une autre div de {nb}/12'))->class(['yellow'])
-    ]]);
+    ]])->vars(['nb' => 1]);
 
     $col6_2 = $col3->get_copy()->html([$span2]);
 
@@ -102,11 +102,11 @@ try {
 
     // page generation
     echo $page->display();
-    /*if(!is_dir('./generated')) {
+    if(!is_dir('./generated')) {
         mkdir('./generated/', 0777, true);
     }
     file_put_contents('./generated/index.html', $page->display()."\n");
-    include './generated/index.html';*/
+    include './generated/index.html';
 }
 catch (Exception $e) {
 	exit($e->getMessage()."\n");

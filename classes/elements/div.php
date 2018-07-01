@@ -56,6 +56,9 @@ class div extends body_not_autoclosed_tag {
 	public function display($html = null): string
     {
         $html = [];
+        /**
+         * @var body_not_autoclosed_tag|body_autoclosed_tag $html_local
+         */
         foreach ($this->html() as $html_local) {
             $html[] = $html_local->display();
         }
