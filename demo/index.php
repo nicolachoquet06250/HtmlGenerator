@@ -19,13 +19,16 @@ try {
     $meta1->name('description')('voila une description');
 
     // Style declaration
-    $border_color = 'red';
-    $style = $page->style()([CssTemplate::instence(
-        'styles',
-        [
-            'color' => $border_color,
-        ]
-    )]);
+    $border_color = 'black';
+    $style = $page->style()(
+        // Template css dans lequel on peux mettre des variables
+        [CssTemplate::instence(
+            'styles',
+            [
+                'color' => $border_color,
+            ]
+        )]
+    );
 
     // Javascript script declaration
     $link_color = 'red';
@@ -89,11 +92,13 @@ try {
     $row_2 = clone $row;
     $row_3 = clone $row;
 
-    $container->html([
+    $rows = [
         $row,
         $row_2,
         $row_3,
-    ]);
+    ];
+
+    $container->html($rows);
     // Add tags to body page
     $page->body([
         $container

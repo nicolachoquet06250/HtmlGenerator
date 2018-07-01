@@ -2,11 +2,16 @@
 
 /**
  * Class body_not_autoclosed_tag
+ *
+ * @method string|body_not_autoclosed_tag scope(string $scope = null)
+ * @method string|body_not_autoclosed_tag role(string $role = null)
  */
 class body_not_autoclosed_tag
 {
     use HtmlBodyElement;
 
+    protected $scope = '';
+    protected $role = '';
     protected $placement = [];
     protected $vars = [];
 
