@@ -8,6 +8,14 @@
  */
 class button extends body_not_autoclosed_tag
 {
+    public function __construct($framework = false)
+    {
+        parent::__construct($framework);
+        if($framework && $framework['name'] === 'bootstrap') {
+            $this->class(['btn', 'btn-primary']);
+        }
+    }
+
     protected $name = '';
     protected $type = '';
 }

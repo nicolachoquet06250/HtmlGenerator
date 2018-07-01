@@ -81,6 +81,11 @@ use HtmlHeadElement;
  * @method null|\ul ul(array $attrs = null)
  * @method null|\wbr wbr(array $attrs = null)
  * @method null|\xmp xmp(array $attrs = null)
+ * @method null|\form form(array $attrs = null)
+ * @method null|\input input(array $attrs = null)
+ * @method null|\button button(array $attrs = null)
+ * @method null|\select select(array $attrs = null)
+ * @method null|\option option(array $attrs = null)
  *
  * @method null|\text text(array $attr = null)
  *

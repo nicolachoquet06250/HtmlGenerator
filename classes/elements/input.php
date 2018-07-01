@@ -10,6 +10,14 @@
  */
 class input extends body_autoclosed_tag
 {
+    public function __construct($framework = false)
+    {
+        parent::__construct($framework);
+        if($framework && $framework['name'] === 'bootstrap') {
+            $this->class(['form-control']);
+        }
+    }
+
     protected $name = '';
     protected $type = '';
     protected $placeholder = '';

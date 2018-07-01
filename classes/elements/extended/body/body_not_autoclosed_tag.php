@@ -3,6 +3,7 @@
 /**
  * Class body_not_autoclosed_tag
  *
+ * @method array|div html(array $html = null)
  * @method string|body_not_autoclosed_tag scope(string $scope = null)
  * @method string|body_not_autoclosed_tag role(string $role = null)
  */
@@ -14,6 +15,7 @@ class body_not_autoclosed_tag
     protected $role = '';
     protected $placement = [];
     protected $vars = [];
+    protected $html = [];
 
     public function framework_classes()
     {
@@ -90,7 +92,17 @@ class body_not_autoclosed_tag
                     $html = str_replace("{{$var}}", $value, $html);
                 }
             } else {
-                $html = '';
+                $html = [];
+                /**
+                 * @var body_not_autoclosed_tag|body_autoclosed_tag $html_local
+                 */
+                foreach ($this->html() as $html_local) {
+                    $html[] = $html_local->display();
+                }
+                $html = implode("\n", $html);
+                foreach ($this->vars as $var => $value) {
+                    $html = str_replace("{{$var}}", $value, $html);
+                }
             }
         }
 

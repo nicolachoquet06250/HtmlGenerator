@@ -46,13 +46,13 @@ trait HtmlBodyElement {
     {
         $str = '';
         foreach ($this as $prop => $value) {
-            if($prop !== 'framework' && $prop !== 'content' && $value !== '' && gettype($value) !== 'array' && $prop !== 'placement') {
+            if($prop !== 'framework' && $prop !== 'content' && $value !== '' && gettype($value) !== 'array' && $prop !== 'placement' && $prop !== 'html') {
                 $str .= " {$prop}='{$value}'";
             }
         }
 
         foreach ($this as $prop => $value) {
-            if($prop !== 'framework' && $prop !== 'content' && gettype($value) === 'array' && $prop !== 'placement') {
+            if($prop !== 'framework' && $prop !== 'content' && gettype($value) === 'array' && $prop !== 'placement' && $prop !== 'html') {
                 if(!empty($value)) {
                    $str .= " {$prop}='";
                     if (isset($value[0])) {

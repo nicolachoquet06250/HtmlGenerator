@@ -57,7 +57,7 @@ try {
     $container->placement(['container']);
 
     // create first row
-    $row = $page->div([
+    /*$row = $page->div([
         'style' => ['height' => 50],
         'placement' => ['row']
     ]);
@@ -104,6 +104,52 @@ try {
         $row,
         $row_2,
         $row_3,
+    ];*/
+
+    $row = $page->div()->placement(['row']);
+
+    $form = $page->form()
+        ->method('GET')
+        ->action('#');
+
+    $div_email = $page->div()
+        ->placement(['col' => ['xs' => 12]]);
+    $input_email = $page->input()
+        ->type('email')
+        ->placeholder('email');
+    $div_email->html([$input_email]);
+
+    $div_password = $page->div()
+        ->placement(['col' => ['xs' => 12]]);
+    $input_password = $page->input()
+        ->type('password')
+        ->placeholder('password');
+    $div_password->html([$input_password]);
+
+    $div_submit = $page->div()
+        ->placement(['col' => ['xs' => 3]]);
+    $input_submit = $page->input()
+        ->type('submit')
+        ->value('Se connecter');
+    $div_submit->html([$input_submit]);
+
+    $form->html([
+        $div_email,
+        $div_password,
+        $div_submit,
+    ]);
+
+    $div_form = $page->div()
+        ->placement(['col' => ['xs' => 12]]);
+
+    $div_form->html([$form]);
+
+    $row->html([
+        $div_form,
+    ]);
+
+    $rows = [
+        $row,
     ];
 
     $container->html($rows);

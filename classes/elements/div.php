@@ -3,24 +3,21 @@
 /**
  * Class div
  *
- * @method array|div html(array $html = null)
  * @method div get_copy()
  * @method div get_void_copy()
  */
 class div extends body_not_autoclosed_tag {
 
-	protected $html = [];
-
 	public function attrs() {
         $str = '';
         foreach ($this as $prop => $value) {
-            if($prop !== 'framework' && $prop !== 'content' && $value !== '' && gettype($value) !== 'array' && $prop !== 'html') {
+            if($prop !== 'framework' && $prop !== 'content' && $value !== '' && gettype($value) !== 'array' && $prop !== 'html' && $prop !== 'vars') {
                 $str .= " {$prop}='{$value}'";
             }
         }
 
         foreach ($this as $prop => $value) {
-            if($prop !== 'framework' && gettype($value) === 'array' && $prop !== 'html') {
+            if($prop !== 'framework' && gettype($value) === 'array' && $prop !== 'html' && $prop !== 'vars') {
                 if(!empty($value)) {
                     $str .= " {$prop}='";
                     if (isset($value[0])) {
