@@ -42,33 +42,37 @@ try {
         )->display()
     );
 
-    // Page title declaration
+    // Add <title> tag
     $title = $page->title()('mon titre');
 
     // Add tags to head page
     $page->head([$meta, $meta1, $title, $style, $script]);
 
-    // <br> and <hr> tags declarations
+    // Add <br> and <hr> tags declarations
     $br = $page->br();
     $hr = $page->hr();
 
+    // Add <div> tag
     $container = $page->div();
     $container->placement(['container']);
 
+    // create first row
     $row = $page->div([
         'style' => ['height' => 50],
         'placement' => ['row']
     ]);
 
+    // create first col
     $col3 = $page->div([
         'class' => ['height_50', 'bg_red', 'border'],
         'placement' => ['col' => ['xs' => 3]]
     ]);
 
+
+    // Add <span> tags
     $span1 = $page->span(['html' => [
         ($page->b()('Voici une div de {nb}/12'))->class(['yellow'])
     ]]);
-
     $span2 = $page->span(['html' => [
         ($page->span())->placement(['icon' => 'ok'])->class(['yellow']),
         ($page->b()('Voici une autre div de {nb}/12'))->class(['yellow'])
@@ -78,6 +82,7 @@ try {
 
     $col3->html([$span1]);
 
+    // create table of cols
     $cols = [
         $col3,
         $col6_2,
@@ -87,11 +92,14 @@ try {
 
     $nb_col = count($cols);
 
+    // Add cols to row
     $row->html($cols)->vars(['nb' => $nb_col]);
 
+    // clone first row for create others rows
     $row_2 = clone $row;
     $row_3 = clone $row;
 
+    // create table of row
     $rows = [
         $row,
         $row_2,
