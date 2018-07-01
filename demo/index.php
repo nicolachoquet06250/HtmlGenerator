@@ -106,7 +106,6 @@ try {
 
 
     // page generation
-    echo $page->display();
     if(!is_dir('./generated')) {
         mkdir('./generated/', 0777, true);
     }
