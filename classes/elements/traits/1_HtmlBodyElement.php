@@ -3,21 +3,21 @@
 /**
  * Trait HtmlBodyElement
  *
- * @method string|HtmlBodyElement		content(string $content = null)
+ * @method string|$this		content(string $content = null)
  *
- * @method array|HtmlBodyElement 		style(array $style = null)
- * @method string|HtmlBodyElement 		id(string $id = null)
- * @method array|HtmlBodyElement 		class(array $class = null)
- * @method string|HtmlBodyElement 		title(string $title = null)
- * @method string|HtmlBodyElement 		accesskey(string $accesskey = null)
- * @method bool|HtmlBodyElement 		contenteditable(bool $contenteditable = null)
- * @method string|HtmlBodyElement 		contextmenu(string $contextmenu = null)
- * @method string|HtmlBodyElement 		dir(string $dir = null)
- * @method bool|HtmlBodyElement 		draggable(bool $draggable = null)
- * @method string|HtmlBodyElement 		hidden(string $hidden = null)
- * @method string|HtmlBodyElement 		lang(string $lang = null)
- * @method bool|HtmlBodyElement 		spellcheck(bool $spellcheck = null)
- * @method bool|HtmlBodyElement 		tabindex(int $tabindex = null)
+ * @method array|$this 		style(array $style = null)
+ * @method string|$this 		id(string $id = null)
+ * @method array|$this 		class(array $class = null)
+ * @method string|$this 		title(string $title = null)
+ * @method string|$this 		accesskey(string $accesskey = null)
+ * @method bool|$this 		contenteditable(bool $contenteditable = null)
+ * @method string|$this 		contextmenu(string $contextmenu = null)
+ * @method string|$this 		dir(string $dir = null)
+ * @method bool|$this 		draggable(bool $draggable = null)
+ * @method string|$this 		hidden(string $hidden = null)
+ * @method string|$this 		lang(string $lang = null)
+ * @method bool|$this 		spellcheck(bool $spellcheck = null)
+ * @method bool|$this 		tabindex(int $tabindex = null)
  */
 trait HtmlBodyElement {
 	use HtmlElement;
@@ -27,6 +27,7 @@ trait HtmlBodyElement {
     public static $AUTO = 'auto';
 
     protected $content = '';
+	protected $placement = [];
 
     protected $style = [];
     protected $id = '';
@@ -91,4 +92,18 @@ trait HtmlBodyElement {
     }
 
     public function framework_classes() {}
+
+	/**
+	 * @param null|array $placement
+	 * @return $this|array
+	 */
+	public function placement($placement = null) {
+		if($placement === null) {
+			return $this->placement;
+		}
+		foreach ($placement as $key => $value) {
+			$this->placement[$key] = $value;
+		}
+		return $this;
+	}
 }

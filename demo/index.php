@@ -7,8 +7,9 @@ use \html_generator\Frameworks;
 require_once 'Autoload.php';
 
 try {
+	$bootstrap_version = isset($_GET['b_version']) ? $_GET['b_version'] : (isset($argv[1]) ? $argv[1] : 'v4');
     // Factory declaration
-    $page = new \html_generator\HtmlGenerator(Frameworks::BOOTSTRAP('v3'));
+    $page = new \html_generator\HtmlGenerator(Frameworks::BOOTSTRAP($bootstrap_version));
 
     // Meta charset declaration
     $meta = $page->meta();

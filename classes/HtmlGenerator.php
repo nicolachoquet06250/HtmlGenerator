@@ -96,7 +96,6 @@ use HtmlHeadElement;
  */
 class HtmlGenerator implements Generator
 {
-    private $last_balise = '';
     private $head_balises = ['meta', 'title', 'link', 'script', 'style'];
     private $head = '', $body = '', $framework;
 

@@ -3,9 +3,9 @@
 /**
  * Class body_not_autoclosed_tag
  *
- * @method array|div html(array $html = null)
- * @method string|body_not_autoclosed_tag scope(string $scope = null)
- * @method string|body_not_autoclosed_tag role(string $role = null)
+ * @method array|$this html(array $html = null)
+ * @method string|$this scope(string $scope = null)
+ * @method string|$this role(string $role = null)
  */
 class body_not_autoclosed_tag
 {
@@ -13,7 +13,6 @@ class body_not_autoclosed_tag
 
     protected $scope = '';
     protected $role = '';
-    protected $placement = [];
     protected $vars = [];
     protected $html = [];
 
@@ -67,20 +66,6 @@ class body_not_autoclosed_tag
             return $this;
         }
         return $this->vars;
-    }
-
-    /**
-     * @param null|array $placement
-     * @return $this|array
-     */
-    public function placement($placement = null) {
-        if($placement === null) {
-            return $this->placement;
-        }
-        foreach ($placement as $key => $value) {
-            $this->placement[$key] = $value;
-        }
-        return $this;
     }
 
     public function display($html = null): string

@@ -5,11 +5,17 @@ $required = [
 ];
 
 $dir = opendir('../classes/elements/traits');
-
+$tmp = [];
 while (($file = readdir($dir)) !== false) {
 	if($file !== '.' && $file !== '..') {
-		$required[] = "../classes/elements/traits/{$file}";
+		$tmp[] = "../classes/elements/traits/{$file}";
 	}
+}
+
+asort($tmp);
+
+foreach ($tmp as $file) {
+	$required[] = $file;
 }
 
 $dir = opendir('../classes/elements/extended');

@@ -3,7 +3,7 @@
 /**
  * Trait HtmlElement
  *
- * @method bool|array|HtmlElement 	framework(bool|array $framework = null)
+ * @method bool|array|$this 	framework(bool|array $framework = null)
  */
 trait HtmlElement {
 	protected $framework;
