@@ -11,13 +11,13 @@ class div extends body_not_autoclosed_tag {
 	public function attrs() {
         $str = '';
         foreach ($this as $prop => $value) {
-            if($prop !== 'framework' && $prop !== 'content' && $value !== '' && gettype($value) !== 'array' && $prop !== 'html' && $prop !== 'vars') {
+            if ($prop !== 'framework' && $prop !== 'content' && $value !== '' && gettype($value) !== 'array' && $prop !== 'html' && $prop !== 'vars' && $prop !== 'placement') {
                 $str .= " {$prop}='{$value}'";
             }
         }
 
         foreach ($this as $prop => $value) {
-            if($prop !== 'framework' && gettype($value) === 'array' && $prop !== 'html' && $prop !== 'vars') {
+            if ($prop !== 'framework' && gettype($value) === 'array' && $prop !== 'html' && $prop !== 'vars' && $prop !== 'placement') {
                 if(!empty($value)) {
                     $str .= " {$prop}='";
                     if (isset($value[0])) {

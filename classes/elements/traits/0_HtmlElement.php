@@ -58,9 +58,12 @@ trait HtmlElement {
 				}
 			}
 			// sinon, on affecte la valeur en paramètre à l'attribut
-			else {
+            elseif (gettype($arguments[0]) === 'string' || gettype($arguments[0]) === 'integer') {
 				$this->$name = $arguments[0];
-			}
+			} elseif (gettype($arguments[0]) === 'object' && get_class($arguments[0]) === 'Closure') {
+                $function = $arguments[0];
+                $this->$name = $function();
+            }
 
 			return $this;
 		}

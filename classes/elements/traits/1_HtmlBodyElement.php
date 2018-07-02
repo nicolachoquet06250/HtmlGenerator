@@ -18,6 +18,9 @@
  * @method string|$this 		lang(string $lang = null)
  * @method bool|$this 		spellcheck(bool $spellcheck = null)
  * @method bool|$this 		tabindex(int $tabindex = null)
+ *
+ * events
+ * @method string|$this onclick(string $onclick = null)
  */
 trait HtmlBodyElement {
 	use HtmlElement;
@@ -42,6 +45,8 @@ trait HtmlBodyElement {
     protected $lang = 'fr';
     protected $spellcheck = 'false';
     protected $tabindex = 0;
+
+    protected $onclick = '';
 
     public function attrs()
     {
@@ -91,7 +96,49 @@ trait HtmlBodyElement {
         return "<{$this->get_name()}{$this->attrs()}>{$this->content()}</{$this->get_name()}>";
     }
 
-    public function framework_classes() {}
+    public function framework_classes()
+    {
+        $classes = $this->class();
+
+        if (!empty($this->placement())) {
+            foreach ($this->placement() as $class => $val) {
+                if (gettype($val) === 'string' && gettype($class) === 'integer') {
+                    if (isset($this->framework()['classes'][$val][''])) {
+                        if (!in_array($this->framework()['classes'][$val][''], $classes)) {
+                            $classes[] = $this->framework()['classes'][$val][''];
+                        }
+                    }
+                } elseif (gettype($val) === 'array') {
+                    foreach ($val as $sous_class => $sous_val) {
+                        if (isset($this->framework()['classes'][$class][$sous_class][$sous_val])) {
+                            if (!in_array($this->framework()['classes'][$class][$sous_class][$sous_val], $classes)) {
+                                $classes[] = $this->framework()['classes'][$class][$sous_class][$sous_val];
+                            }
+                        } elseif (isset($this->framework()['classes'][$class][''])) {
+                            if (!in_array($this->framework()['classes'][$class][''], $classes)) {
+                                $classes[] = $this->framework()['classes'][$class][''];
+                            }
+                        }
+                    }
+                } else {
+                    if (gettype($class) === 'integer') {
+                        if (isset($this->framework()['classes'][$val])) {
+                            if (!in_array($this->framework()['classes'][$val], $classes)) {
+                                $classes[] = $this->framework()['classes'][$val];
+                            }
+                        }
+                    } else {
+                        if (isset($this->framework()['classes'][$class][$val])) {
+                            if (!in_array($this->framework()['classes'][$class][$val], $classes)) {
+                                $classes[] = $this->framework()['classes'][$class][$val];
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        $this->class($classes);
+    }
 
 	/**
 	 * @param null|array $placement
@@ -106,4 +153,9 @@ trait HtmlBodyElement {
 		}
 		return $this;
 	}
+
+    public function reset_placement()
+    {
+        $this->placement = [];
+    }
 }

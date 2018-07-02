@@ -3,13 +3,14 @@
 ini_set('display_errors', 'on');
 echo '<meta charset="utf-8">';
 use \html_generator\Frameworks;
+use \html_generator\HtmlGenerator;
 
 require_once 'Autoload.php';
 
 try {
 	$bootstrap_version = isset($_GET['b_version']) ? $_GET['b_version'] : (isset($argv[1]) ? $argv[1] : 'v4');
     // Factory declaration
-    $page = new \html_generator\HtmlGenerator(Frameworks::BOOTSTRAP($bootstrap_version));
+    $page = new HtmlGenerator(Frameworks::MATERIALIZE('v0'));
 
     // Meta charset declaration
     $meta = $page->meta();
@@ -57,56 +58,6 @@ try {
     $container = $page->div();
     $container->placement(['container']);
 
-    // create first row
-    /*$row = $page->div([
-        'style' => ['height' => 50],
-        'placement' => ['row']
-    ]);
-
-    // create first col
-    $col3 = $page->div([
-        'class' => ['height_50', 'bg_red', 'border'],
-        'placement' => ['col' => ['xs' => 3]]
-    ]);
-
-
-    // Add <span> tags
-    $span1 = $page->span(['html' => [
-        ($page->b()('Voici une div de {nb}/12'))->class(['yellow'])
-    ]]);
-    $span2 = $page->span(['html' => [
-        ($page->span())->placement(['icon' => 'ok'])->class(['yellow']),
-        ($page->b()('Voici une autre div de {nb}/12'))->class(['yellow'])
-    ]])->vars(['nb' => 1]);
-
-    $col6_2 = $col3->get_copy()->html([$span2]);
-
-    $col3->html([$span1]);
-
-    // create table of cols
-    $cols = [
-        $col3,
-        $col6_2,
-        $col6_2,
-        $col3,
-    ];
-
-    $nb_col = count($cols);
-
-    // Add cols to row
-    $row->html($cols)->vars(['nb' => $nb_col]);
-
-    // clone first row for create others rows
-    $row_2 = clone $row;
-    $row_3 = clone $row;
-
-    // create table of row
-    $rows = [
-        $row,
-        $row_2,
-        $row_3,
-    ];*/
-
     $row = $page->div()->placement(['row']);
 
     $form = $page->form()
@@ -129,8 +80,9 @@ try {
     $input_submit = $page->input()
         ->type('submit')
         ->value('Se connecter')
-		->placement(['col' => ['xs' => 3]])
-		->id('sub');
+		->placement(['col' => ['xs' => 3]])->style(['cursor' => 'pointer'])->id('sub')->onclick(function () {
+            return JsTemplate::instence('onclick/onclick_button', ['var' => 'test',])->display();
+        });
 
     $form->html([
         $input_email,

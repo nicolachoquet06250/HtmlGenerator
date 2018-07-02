@@ -7,6 +7,11 @@ class Frameworks {
 
 	const FROM_SCRATCH = [];
 
+    public static function FROM_SCRATCH()
+    {
+        return self::FROM_SCRATCH;
+    }
+
     private static $bootstrap_classes = [
         'v3' => [
             'row' => [
@@ -581,7 +586,7 @@ class Frameworks {
                 'tint' => 'glyphicon glyphicon-tint',
                 'edit' => 'glyphicon glyphicon-edit',
                 'share' => 'glyphicon glyphicon-share',
-            ],
+            ], 'form' => ['control' => 'form-control',], 'btn' => ['' => 'btn', 'primary' => 'btn-primary',],
         ],
         'v4' => [
             'row' => [
@@ -1281,7 +1286,7 @@ class Frameworks {
                 'xl' => [
                     'left' => 'text-xl-left',
                 ],
-            ],
+            ], 'form' => ['control' => 'form-control',], 'btn' => ['' => 'btn', 'primary' => 'btn-primary',],
         ]
     ];
 	private static $bootstrap_versions = [
@@ -1336,152 +1341,10 @@ class Frameworks {
 	}
 
 
-    private static $materialize_classes = [
-        'row' => 'row',
-        'col' => [
-            'xs' => [
-                'col-1',
-                'col-2',
-                'col-3',
-                'col-4',
-                'col-5',
-                'col-6',
-                'col-7',
-                'col-8',
-                'col-9',
-                'col-10',
-                'col-11',
-                'col-12'
-            ],
-            'sm' => [
-                'col-sm-1',
-                'col-sm-2',
-                'col-sm-3',
-                'col-sm-4',
-                'col-sm-5',
-                'col-sm-6',
-                'col-sm-7',
-                'col-sm-8',
-                'col-sm-9',
-                'col-sm-10',
-                'col-sm-11',
-                'col-sm-12'
-            ],
-            'md' => [
-                'col-md-1',
-                'col-md-2',
-                'col-md-3',
-                'col-md-4',
-                'col-md-5',
-                'col-md-6',
-                'col-md-7',
-                'col-md-8',
-                'col-md-9',
-                'col-md-10',
-                'col-md-11',
-                'col-md-12'
-            ],
-            'lg' => [
-                'col-lg-1',
-                'col-lg-2',
-                'col-lg-3',
-                'col-lg-4',
-                'col-lg-5',
-                'col-lg-6',
-                'col-lg-7',
-                'col-lg-8',
-                'col-lg-9',
-                'col-lg-10',
-                'col-lg-11',
-                'col-lg-12'
-            ],
-            'xl' => [
-                'col-xl-1',
-                'col-xl-2',
-                'col-xl-3',
-                'col-xl-4',
-                'col-xl-5',
-                'col-xl-6',
-                'col-xl-7',
-                'col-xl-8',
-                'col-xl-9',
-                'col-xl-10',
-                'col-xl-11',
-                'col-xl-12'
-            ],
-        ],
-        'offset' => [
-            'xs' => [
-                'col-1',
-                'col-2',
-                'col-3',
-                'col-4',
-                'col-5',
-                'col-6',
-                'col-7',
-                'col-8',
-                'col-9',
-                'col-10',
-                'col-11',
-                'col-12'
-            ],
-            'sm' => [
-                'offset-sm-1',
-                'offset-sm-2',
-                'offset-sm-3',
-                'offset-sm-4',
-                'offset-sm-5',
-                'offset-sm-6',
-                'offset-sm-7',
-                'offset-sm-8',
-                'offset-sm-9',
-                'offset-sm-10',
-                'offset-sm-11',
-                'offset-sm-12'
-            ],
-            'md' => [
-                'offset-md-1',
-                'offset-md-2',
-                'offset-md-3',
-                'offset-md-4',
-                'offset-md-5',
-                'offset-md-6',
-                'offset-md-7',
-                'offset-md-8',
-                'offset-md-9',
-                'offset-md-10',
-                'offset-md-11',
-                'offset-md-12'
-            ],
-            'lg' => [
-                'offset-lg-1',
-                'offset-lg-2',
-                'offset-lg-3',
-                'offset-lg-4',
-                'offset-lg-5',
-                'offset-lg-6',
-                'offset-lg-7',
-                'offset-lg-8',
-                'offset-lg-9',
-                'offset-lg-10',
-                'offset-lg-11',
-                'offset-lg-12'
-            ],
-            'xl' => [
-                'offset-xl-1',
-                'offset-xl-2',
-                'offset-xl-3',
-                'offset-xl-4',
-                'offset-xl-5',
-                'offset-xl-6',
-                'offset-xl-7',
-                'offset-xl-8',
-                'offset-xl-9',
-                'offset-xl-10',
-                'offset-xl-11',
-                'offset-xl-12'
-            ],
-        ]
+    private static $materialize_classes = ['v0' => ['container' => ['' => 'container', 'fluid' => 'container-fluid',], 'row' => ['' => 'row',], 'col' => ['sm' => ['col s-1', 'col s-2', 'col s-3', 'col s-4', 'col s-5', 'col s-6', 'col s-7', 'col s-8', 'col s-9', 'col s-10', 'col s-11', 'col s-12'], 'md' => ['col m-1', 'col m-2', 'col m-3', 'col m-4', 'col m-5', 'col m-6', 'col m-7', 'col m-8', 'col m-9', 'col m-10', 'col m-11', 'col m-12'], 'lg' => ['col l-1', 'col l-2', 'col l-3', 'col l-4', 'col l-5', 'col l-6', 'col l-7', 'col l-8', 'col l-9', 'col l-10', 'col l-11', 'col l-12'], 'xl' => ['col xl-1', 'col xl-2', 'col xl-3', 'col xl-4', 'col xl-5', 'col xl-6', 'col xl-7', 'col xl-8', 'col xl-9', 'col xl-10', 'col xl-11', 'col xl-12'],], 'header' => 'header', 'title' => 'title', 'offset' => ['sm' => ['offset-s1', 'offset-s2', 'offset-s3', 'offset-s4', 'offset-s5', 'offset-s6', 'offset-s7', 'offset-s8', 'offset-s9', 'offset-s10', 'offset-s11', 'offset-s12'], 'md' => ['offset-m1', 'offset-m2', 'offset-m3', 'offset-m4', 'offset-m5', 'offset-m6', 'offset-m7', 'offset-m8', 'offset-m9', 'offset-m10', 'offset-m11', 'offset-m12'], 'lg' => ['offset-l1', 'offset-l2', 'offset-l3', 'offset-l4', 'offset-l5', 'offset-l6', 'offset-l7', 'offset-l8', 'offset-l9', 'offset-l10', 'offset-l11', 'offset-l12'], 'xl' => ['offset-xl1', 'offset-xl2', 'offset-xl3', 'offset-xl4', 'offset-xl5', 'offset-xl6', 'offset-xl7', 'offset-xl8', 'offset-xl9', 'offset-xl10', 'offset-xl11', 'offset-xl12'],
+            ], 'push' => ['sm' => ['push-s1', 'push-s2', 'push-s3', 'push-s4', 'push-s5', 'push-s6', 'push-s7', 'push-s8', 'push-s9', 'push-s10', 'push-s11', 'push-s12',], 'md' => ['push-m0', 'push-m1', 'push-m2', 'push-m3', 'push-m4', 'push-m5', 'push-m6', 'push-m7', 'push-m8', 'push-m9', 'push-m10', 'push-m11', 'push-m12',], 'lg' => ['push-l0', 'push-l1', 'push-l2', 'push-l3', 'push-l4', 'push-l5', 'push-l6', 'push-l7', 'push-l8', 'push-l9', 'push-l10', 'push-l11', 'push-l12',], 'xl' => ['push-xl0', 'push-xl1', 'push-xl2', 'push-xl3', 'push-xl4', 'push-xl5', 'push-xl6', 'push-xl7', 'push-xl8', 'push-xl9', 'push-xl10', 'push-xl11', 'push-xl12',],], 'pull' => ['sm' => ['pull-s1', 'pull-s2', 'pull-s3', 'pull-s4', 'pull-s5', 'pull-s6', 'pull-s7', 'pull-s8', 'pull-s9', 'pull-s10', 'pull-s11', 'pull-s12',], 'md' => ['pull-m0', 'pull-m1', 'pull-m2', 'pull-m3', 'pull-m4', 'pull-m5', 'pull-m6', 'pull-m7', 'pull-m8', 'pull-m9', 'pull-m10', 'pull-m11', 'pull-m12',], 'lg' => ['pull-l0', 'pull-l1', 'pull-l2', 'pull-l3', 'pull-l4', 'pull-l5', 'pull-l6', 'pull-l7', 'pull-l8', 'pull-l9', 'pull-l10', 'pull-l11', 'pull-l12',], 'xl' => ['pull-xl0', 'pull-xl1', 'pull-xl2', 'pull-xl3', 'pull-xl4', 'pull-xl5', 'pull-xl6', 'pull-xl7', 'pull-xl8', 'pull-xl9', 'pull-xl10', 'pull-xl11', 'pull-xl12',],], 'divider' => ['' => 'divider',], 'section' => ['' => 'section',], 'flow' => ['text' => 'flow-text',], 'valign' => ['wrapper' => 'valign-wrapper',], 'text' => ['left' => 'left-align', 'right' => 'right-align', 'center' => 'center-align', 'justify' => 'justify-align', 'truncate' => 'truncate', 'flow' => 'flow-text',], 'hide' => ['' => 'hide', 'on small' => ['only' => 'hide-on-small-only',], 'on med' => ['only' => 'hide-on-med-only', 'and' => ['up' => 'hide-on-med-and-down', 'down' => 'hide-on-med-and-up',],], 'on larg' => ['only' => 'hide-on-large-only',],], 'show' => ['on small' => 'show-on-small', 'on med' => ['' => 'show-on-medium', 'and' => ['up' => 'show-on-medium-and-up', 'down' => 'show-on-medium-and-down',],], 'on large' => 'show-on-large',], 'card' => ['panel' => 'card-panel', 'content' => 'card-content', 'title' => 'card-title', 'action' => 'card-action', 'image' => 'card-image', 'stacked' => 'card-stacked', 'reveal' => 'card-reveal', 'tabs' => 'card-tabs',], 'tabs' => ['fixed width' => 'tabs-fixed-width',], 'tab' => 'tab', 'small' => 'small', 'teal' => 'teal', 'chip' => 'chip', 'chips' => ['' => 'chips', 'initial' => 'chips chips-initial', 'placeholder' => 'chips chips-placeholder', 'autocomplete' => 'chips chips-autocomplete',], 'sticky' => ['action' => 'sticky-action',], 'activator' => 'activator', 'halfway' => ['fab' => 'halfway-fab',], 'hoverable' => 'hoverable', 'img' => ['responsive' => 'responsive-img', 'fluid' => 'fluid responsive-img', 'thumbnail' => 'thumbnail responsive-img', 'circle' => 'circle responsive-img',], 'video' => ['container' => 'video-container', 'responsive' => 'responsive-video',], 'pulse' => ['' => 'btn btn-floating pulse', 'large' => 'btn btn-floating btn-large pulse',], 'depth' => [1 => 'z-depth-1', 2 => 'z-depth-2', 3 => 'z-depth-3', 4 => 'z-depth-4', 5 => 'z-depth-5', 6 => 'z-depth-6',], 'table' => ['' => '', 'striped' => 'striped', 'bordered' => 'bordered', 'hightlight' => 'hightlight', 'centered' => 'centered', 'responsive' => 'responsive-table'], 'btn' => ['' => 'btn', 'floating' => 'btn-floating', 'large' => 'btn-large', 'fixed action' => 'fixed-action-btn', 'flat' => 'btn-flat',], 'scale' => ['transition' => 'scale-transition', 'out' => 'scale-out', 'in' => 'scale-in',], 'collection' => ['item' => 'collection-item', 'header' => 'collection-header',], 'secondary' => ['content' => 'secondary-content',], 'dismissable' => 'dismissable', 'badge' => ['' => 'badge', 'new' => 'new-badge'], 'dropdown' => ['content' => 'dropdown-content', 'button' => 'dropdown-button'], 'page' => ['footer' => 'page-footer',], 'footer' => ['copyright' => 'footer-copyright',], 'right' => 'right', 'left' => 'left', 'center' => 'center', 'nav' => ['wrapper' => 'nav-wrapper',], 'brand' => ['logo' => 'brand-logo',], 'collapsible' => ['' => 'collapsible', 'header' => 'collapsible-header', 'body' => 'collapsible-body',], 'waves' => ['effect' => 'waves-effect', 'light' => 'waves-light', 'teal' => 'waves-teal',], 'horizontal' => 'horizontal', 'toolbar' => 'toolbar', 'disabled' => 'disabled', 'breadcrumb' => 'breadcrumb', 'input' => ['field' => 'input-field',],
+
+    ], 'v1' => [],
     ];
 	private static $materialize_versions = [
 		'v0' => [
@@ -1518,8 +1381,7 @@ class Frameworks {
 				'version' => $version,
 				'doc' => self::$materialize_versions[$version]['doc'],
 				'js' => self::$materialize_versions[$version]['js'],
-				'css' => self::$materialize_versions[$version]['css'],
-                'classes' => self::$materialize_classes,
+				'css' => self::$materialize_versions[$version]['css'], 'classes' => self::$materialize_classes[$version],
 			];
 		}
 		return self::FROM_SCRATCH;

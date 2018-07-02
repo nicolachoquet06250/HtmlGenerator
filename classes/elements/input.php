@@ -1,5 +1,7 @@
 <?php
 
+use html_generator\HtmlGenerator;
+
 /**
  * Class input
  *
@@ -10,13 +12,6 @@
  */
 class input extends body_autoclosed_tag
 {
-    public function __construct($framework = false)
-    {
-        parent::__construct($framework);
-        if($framework && $framework['name'] === 'bootstrap') {
-            $this->class(['form-control']);
-        }
-    }
 
     protected $name = '';
     protected $type = '';
@@ -25,24 +20,26 @@ class input extends body_autoclosed_tag
 
     public function display($html = null): string {
     	if($this->framework()) {
-			$div = (new \html_generator\HtmlGenerator($this->framework()))
-				->div()
-				->placement($this->placement());
-			$this->placement = [];
-			$this->placement(['form' => 'control']);
+            $this->placement(['input' => 'field']);
+            $div = (new HtmlGenerator($this->framework()))->div()->placement($this->placement());
+            $this->reset_placement();
 
+            if (($this->type() === 'button' || $this->type() === 'submit' || $this->type() === 'reset') && $this->framework()['name'] !== 'bootstrap') {
+                $this->placement(['btn', 'btn' => 'primary']);
+            }
+            $this->placement(['form' => 'control']);
+            $this->framework_classes();
 			$props = [];
 			foreach ($this as $prop => $val) {
 				if($prop !== 'framework') {
 					$props[$prop] = $val;
 				}
 			}
-			$input = (new \html_generator\HtmlGenerator())->input($props);
+            $input = (new HtmlGenerator())->input($props);
 			$html = $div->html([$input])
 						->display();
 		}
 		else {
-			$this->framework_classes();
     		$html = parent::display();
 		}
 		return $html;

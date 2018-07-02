@@ -91,8 +91,8 @@ use HtmlHeadElement;
  * @method null|\comment comment(array $attrs = null)
  *
  *
- * @method HtmlGenerator|string head(\HtmlHeadElement|array $element = null)
- * @method HtmlGenerator|string body(HtmlBodyElement|array $element = null)
+ * @method $this|string head(\HtmlHeadElement | array $element = null)
+ * @method $this|string body(HtmlBodyElement | array $element = null)
  */
 class HtmlGenerator implements Generator
 {
@@ -137,7 +137,7 @@ class HtmlGenerator implements Generator
     /**
      * @param $name
      * @param $arguments
-     * @return null|HtmlGenerator|\string
+     * @return null|$this|\string
      * @throws \Exception
      */
     public function __call($name, $arguments = [])

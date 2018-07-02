@@ -16,7 +16,6 @@ class CssTemplate
         }
         $template = str_replace("\n", '', $template);
         preg_replace_callback('`\#([A-Za-z0-9\-\_\?\.]+)\#`', function ($matches) use (&$template) {
-            var_dump($matches);
             $template = str_replace($matches[0], '', $template);
         }, $template);
         return $template;
