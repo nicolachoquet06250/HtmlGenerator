@@ -42,14 +42,19 @@ trait HtmlElement {
                 return $this->$name;
 			}
 
-            // si il y a un commentaire, et que c'est un tableau
+            // si il y a un argument, et que c'est un tableau
 			if(gettype($arguments[0]) === 'array') {
 			    foreach ($arguments[0] as $key => $valeur) {
 			        if(gettype($key) === 'integer'
                         && (gettype($this->$name) === 'string' || $this->$name === null)) {
 			            $this->$name = [];
 			        }
-					$this->$name[$key] = $valeur;
+			        if(gettype($key) === 'integer') {
+			        	$this->$name[] = $valeur;
+					}
+					else {
+						$this->$name[$key] = $valeur;
+					}
 				}
 			}
 			// sinon, on affecte la valeur en paramètre à l'attribut

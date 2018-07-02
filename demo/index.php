@@ -1,7 +1,7 @@
 <?php
 
 ini_set('display_errors', 'on');
-
+echo '<meta charset="utf-8">';
 use \html_generator\Frameworks;
 
 require_once 'Autoload.php';
@@ -113,31 +113,29 @@ try {
         ->method('GET')
         ->action('#');
 
-    $div_email = $page->div()
-        ->placement(['col' => ['xs' => 12]]);
     $input_email = $page->input()
         ->type('email')
-        ->placeholder('email');
-    $div_email->html([$input_email]);
+        ->placeholder('email')
+		->placement(['col' => ['xs' => 12]])
+		->id('email');
 
-    $div_password = $page->div()
-        ->placement(['col' => ['xs' => 12]]);
     $input_password = $page->input()
         ->type('password')
-        ->placeholder('password');
-    $div_password->html([$input_password]);
+        ->placeholder('password')
+		->class(['text'])
+		->placement(['col' => ['xs' => 12]])
+		->id('pw');
 
-    $div_submit = $page->div()
-        ->placement(['col' => ['xs' => 3]]);
     $input_submit = $page->input()
         ->type('submit')
-        ->value('Se connecter');
-    $div_submit->html([$input_submit]);
+        ->value('Se connecter')
+		->placement(['col' => ['xs' => 3]])
+		->id('sub');
 
     $form->html([
-        $div_email,
-        $div_password,
-        $div_submit,
+        $input_email,
+        $input_password,
+        $input_submit,
     ]);
 
     $div_form = $page->div()

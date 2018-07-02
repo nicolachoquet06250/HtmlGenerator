@@ -22,4 +22,29 @@ class input extends body_autoclosed_tag
     protected $type = '';
     protected $placeholder = '';
     protected $value = '';
+
+    public function display($html = null): string {
+    	if($this->framework()) {
+			$div = (new \html_generator\HtmlGenerator($this->framework()))
+				->div()
+				->placement($this->placement());
+			$this->placement = [];
+			$this->placement(['form' => 'control']);
+
+			$props = [];
+			foreach ($this as $prop => $val) {
+				if($prop !== 'framework') {
+					$props[$prop] = $val;
+				}
+			}
+			$input = (new \html_generator\HtmlGenerator())->input($props);
+			$html = $div->html([$input])
+						->display();
+		}
+		else {
+			$this->framework_classes();
+    		$html = parent::display();
+		}
+		return $html;
+	}
 }
