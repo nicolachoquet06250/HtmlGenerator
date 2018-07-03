@@ -10,7 +10,8 @@ require_once 'Autoload.php';
 try {
 	$bootstrap_version = isset($_GET['b_version']) ? $_GET['b_version'] : (isset($argv[1]) ? $argv[1] : 'v4');
     // Factory declaration
-    $page = new HtmlGenerator(Frameworks::MATERIALIZE('v0'));
+	$framework = isset($_GET['f']) && $_GET['f'] === 'materialize' ? Frameworks::MATERIALIZE() : Frameworks::BOOTSTRAP($bootstrap_version);
+    $page = new HtmlGenerator($framework);
 
     // Meta charset declaration
     $meta = $page->meta();
@@ -99,8 +100,22 @@ try {
         $div_form,
     ]);
 
+    $row_2 = $page->div()->placement(['row']);
+    $col1 = $page->div()->placement(['col' => ['xs' => 13]]);
+    $col2 = $col1->get_copy();
+    $col3 = $col1->get_copy();
+    $col4 = $col1->get_copy();
+
+    $row_2->html([
+    	$col1->html([$page->text()('pour Materialize v1, tape ?f=materialize')]),
+		$col2->html([$page->text()('pour Bootstrap v3, tape ?b_version=v3')]),
+		$col3->html([$page->text()('pour Bootstrap v4, tape ?b_version=v4')]),
+		$col4->html([$page->text()('par défault, c\'est BootstrapV4')])
+	]);
+
     $rows = [
         $row,
+		$row_2,
     ];
 
     $container->html($rows);
