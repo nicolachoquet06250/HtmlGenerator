@@ -1437,7 +1437,6 @@ class Frameworks {
 			]
 		]
 	];
-
 	public static function MATERIALIZE($version = 'v1') {
 		if (isset(self::$materialize_versions[$version])) {
 			return [
