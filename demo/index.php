@@ -101,7 +101,7 @@ try {
     ]);
 
     $row_2 = $page->div()->placement(['row']);
-    $col1 = $page->div()->placement(['col' => ['xs' => 13]]);
+    $col1 = $page->div()->placement(['col' => ['xs' => 12]]);
     $col2 = $col1->get_copy();
     $col3 = $col1->get_copy();
     $col4 = $col1->get_copy();
