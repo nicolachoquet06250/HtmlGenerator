@@ -101,7 +101,7 @@ class HtmlGenerator implements Generator
 
     public function __construct(array $framework = Frameworks::FROM_SCRATCH)
     {
-        $this->framework = $framework === Frameworks::FROM_SCRATCH ? false : $framework;
+        $this->framework = $framework === Frameworks::FROM_SCRATCH() ? false : $framework;
 
         $this->head($this->meta()->name('viewport')->content('width=device-width, initial-scale=1, shrink-to-fit=no'));
 
@@ -187,7 +187,7 @@ class HtmlGenerator implements Generator
                 return $this->body;
             default:
                 $classname = $name === 'var' ? 'html_var' : $name;
-                $framework = $this->framework === Frameworks::FROM_SCRATCH ? false : $this->framework;
+                $framework = $this->framework === Frameworks::FROM_SCRATCH() ? false : $this->framework;
 
                 $element = new $classname($framework);
                 if (!empty($arguments) && $arguments[0]) {
