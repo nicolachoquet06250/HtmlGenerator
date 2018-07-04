@@ -20,19 +20,19 @@ class Frameworks {
 				'fluid' => 'container-fluid'
 			],
 			'col'        => [
-				0      => 'col-xs-0',
-				1      => 'col-xs-1',
-				2      => 'col-xs-2',
-				3      => 'col-xs-3',
-				4      => 'col-xs-4',
-				5      => 'col-xs-5',
-				6      => 'col-xs-6',
-				7      => 'col-xs-7',
-				8      => 'col-xs-8',
-				9      => 'col-xs-9',
-				10     => 'col-xs-10',
-				11     => 'col-xs-11',
-				12     => 'col-xs-12',
+				'col-xs-0',
+                'col-xs-1',
+				'col-xs-2',
+				'col-xs-3',
+				'col-xs-4',
+				'col-xs-5',
+				'col-xs-6',
+				'col-xs-7',
+				'col-xs-8',
+				'col-xs-9',
+				'col-xs-10',
+				'col-xs-11',
+				'col-xs-12',
 				'auto' => 'col-xs-auto',
 				'xs'   => [
 					'col-xs-0',
@@ -100,19 +100,19 @@ class Frameworks {
 				],
 			],
 			'offset'     => [
-				0      => 'col-xs-offset-0',
-				1      => 'col-xs-offset-1',
-				2      => 'col-xs-offset-2',
-				3      => 'col-xs-offset-3',
-				4      => 'col-xs-offset-4',
-				5      => 'col-xs-offset-5',
-				6      => 'col-xs-offset-6',
-				7      => 'col-xs-offset-7',
-				8      => 'col-xs-offset-8',
-				9      => 'col-xs-offset-9',
-				10     => 'col-xs-offset-10',
-				11     => 'col-xs-offset-11',
-				12     => 'col-xs-offset-12',
+				'col-xs-offset-0',
+				'col-xs-offset-1',
+				'col-xs-offset-2',
+				'col-xs-offset-3',
+				'col-xs-offset-4',
+				'col-xs-offset-5',
+				'col-xs-offset-6',
+				'col-xs-offset-7',
+				'col-xs-offset-8',
+				'col-xs-offset-9',
+				'col-xs-offset-10',
+				'col-xs-offset-11',
+				'col-xs-offset-12',
 				'auto' => 'col-xs-offset-auto',
 				'xs'   => [
 					'col-xs-offset-0',
@@ -584,7 +584,14 @@ class Frameworks {
 				'tint'       => 'glyphicon glyphicon-tint',
 				'edit'       => 'glyphicon glyphicon-edit',
 				'share'      => 'glyphicon glyphicon-share',
-			], 'form'    => ['control' => 'form-control',], 'btn' => ['' => 'btn', 'primary' => 'btn-primary',],
+			],
+            'form'    => [
+                'control' => 'form-control',
+            ],
+            'btn' => [
+                '' => 'btn',
+                'primary' => 'btn-primary',
+            ],
 		],
 		'v4' => [
 			'row'       => [
@@ -595,19 +602,19 @@ class Frameworks {
 				'fluid' => 'container-fluid'
 			],
 			'col'       => [
-				0      => 'col-0',
-				1      => 'col-1',
-				2      => 'col-2',
-				3      => 'col-3',
-				4      => 'col-4',
-				5      => 'col-5',
-				6      => 'col-6',
-				7      => 'col-7',
-				8      => 'col-8',
-				9      => 'col-9',
-				10     => 'col-10',
-				11     => 'col-11',
-				12     => 'col-12',
+				'col-0',
+				'col-1',
+				'col-2',
+				'col-3',
+				'col-4',
+				'col-5',
+				'col-6',
+				'col-7',
+				'col-8',
+				'col-9',
+				'col-10',
+				'col-11',
+				'col-12',
 				'auto' => 'col-auto',
 				'xs'   => [
 					'col-0',
@@ -1344,7 +1351,7 @@ class Frameworks {
 			'container' => [
 				'' => 'container',
 				'fluid' => 'container-fluid',
-				],
+            ],
 			'row' => [
 				'' => 'row',
 				],
@@ -1378,45 +1385,219 @@ class Frameworks {
 			'title' => 'title',
 			'offset' => [
 				'sm' => [
-					'',
-					'offset-s1', 'offset-s2', 'offset-s3',
-					'offset-s4', 'offset-s5', 'offset-s6',
-					'offset-s7', 'offset-s8', 'offset-s9',
-					'offset-s10', 'offset-s11', 'offset-s12'
+					1 => 'offset-s1', 2 => 'offset-s2', 3 => 'offset-s3',
+                    4 => 'offset-s4', 5 => 'offset-s5', 6 => 'offset-s6',
+                    7 => 'offset-s7', 8 => 'offset-s8', 9 => 'offset-s9',
+                    10 => 'offset-s10', 11 => 'offset-s11', 12 => 'offset-s12'
 				],
 				'md' => [
-					'',
-					'offset-m1', 'offset-m2', 'offset-m3',
-					'offset-m4', 'offset-m5', 'offset-m6',
-					'offset-m7', 'offset-m8', 'offset-m9',
-					'offset-m10', 'offset-m11', 'offset-m12'
+					1 => 'offset-m1', 2 => 'offset-m2', 3 => 'offset-m3',
+                    4 => 'offset-m4', 5 => 'offset-m5', 6 => 'offset-m6',
+                    7 => 'offset-m7', 8 => 'offset-m8', 9 => 'offset-m9',
+                    10 => 'offset-m10', 11 => 'offset-m11', 12 => 'offset-m12'
 				],
 				'lg' => [
-					'',
-					'offset-l1', 'offset-l2', 'offset-l3',
-					'offset-l4', 'offset-l5', 'offset-l6',
-					'offset-l7', 'offset-l8', 'offset-l9',
-					'offset-l10', 'offset-l11', 'offset-l12'
+					1 => 'offset-l1', 2 => 'offset-l2', 3 => 'offset-l3',
+                    4 => 'offset-l4', 5 => 'offset-l5', 6 => 'offset-l6',
+                    7 => 'offset-l7', 8 => 'offset-l8', 9 => 'offset-l9',
+                    10 => 'offset-l10', 11 => 'offset-l11', 12 => 'offset-l12'
 				],
 				'xl' => [
-					'',
-					'offset-xl1', 'offset-xl2', 'offset-xl3',
-					'offset-xl4', 'offset-xl5', 'offset-xl6',
-					'offset-xl7', 'offset-xl8', 'offset-xl9',
-					'offset-xl10', 'offset-xl11', 'offset-xl12'
+					1 => 'offset-xl1', 2 => 'offset-xl2', 3 => 'offset-xl3',
+                    4 => 'offset-xl4', 5 => 'offset-xl5', 6 => 'offset-xl6',
+                    7 => 'offset-xl7', 8 => 'offset-xl8', 9 => 'offset-xl9',
+                    10 => 'offset-xl10', 11 => 'offset-xl11', 12 => 'offset-xl12'
 				],
-			], 'push' => [
-				'sm' => ['', 'push-s1', 'push-s2', 'push-s3', 'push-s4', 'push-s5', 'push-s6', 'push-s7', 'push-s8', 'push-s9', 'push-s10', 'push-s11', 'push-s12',],
-				'md' => ['', 'push-m1', 'push-m2', 'push-m3', 'push-m4', 'push-m5', 'push-m6', 'push-m7', 'push-m8', 'push-m9', 'push-m10', 'push-m11', 'push-m12',],
-				'lg' => ['', 'push-l1', 'push-l2', 'push-l3', 'push-l4', 'push-l5', 'push-l6', 'push-l7', 'push-l8', 'push-l9', 'push-l10', 'push-l11', 'push-l12',],
-				'xl' => ['', 'push-xl1', 'push-xl2', 'push-xl3', 'push-xl4', 'push-xl5', 'push-xl6', 'push-xl7', 'push-xl8', 'push-xl9', 'push-xl10', 'push-xl11', 'push-xl12',],
-				],
-			'pull' => ['sm' => ['', 'pull-s1', 'pull-s2', 'pull-s3', 'pull-s4', 'pull-s5', 'pull-s6', 'pull-s7', 'pull-s8', 'pull-s9', 'pull-s10', 'pull-s11', 'pull-s12',],
-					   'md' => ['', 'pull-m1', 'pull-m2', 'pull-m3', 'pull-m4', 'pull-m5', 'pull-m6', 'pull-m7', 'pull-m8', 'pull-m9', 'pull-m10', 'pull-m11', 'pull-m12',],
-					   'lg' => ['', 'pull-l1', 'pull-l2', 'pull-l3', 'pull-l4', 'pull-l5', 'pull-l6', 'pull-l7', 'pull-l8', 'pull-l9', 'pull-l10', 'pull-l11', 'pull-l12',],
-					   'xl' => ['', 'pull-xl1', 'pull-xl2', 'pull-xl3', 'pull-xl4', 'pull-xl5', 'pull-xl6', 'pull-xl7', 'pull-xl8', 'pull-xl9', 'pull-xl10', 'pull-xl11', 'pull-xl12',],
-				], 'divider' => ['' => 'divider',], 'section' => ['' => 'section',], 'flow' => ['text' => 'flow-text',], 'valign' => ['wrapper' => 'valign-wrapper',], 'text' => ['left' => 'left-align', 'right' => 'right-align', 'center' => 'center-align', 'justify' => 'justify-align', 'truncate' => 'truncate', 'flow' => 'flow-text',], 'hide' => ['' => 'hide', 'on small' => ['only' => 'hide-on-small-only',], 'on med' => ['only' => 'hide-on-med-only', 'and' => ['up' => 'hide-on-med-and-down', 'down' => 'hide-on-med-and-up',],], 'on larg' => ['only' => 'hide-on-large-only',],], 'show' => ['on small' => 'show-on-small', 'on med' => ['' => 'show-on-medium', 'and' => ['up' => 'show-on-medium-and-up', 'down' => 'show-on-medium-and-down',],], 'on large' => 'show-on-large',], 'card' => ['panel' => 'card-panel', 'content' => 'card-content', 'title' => 'card-title', 'action' => 'card-action', 'image' => 'card-image', 'stacked' => 'card-stacked', 'reveal' => 'card-reveal', 'tabs' => 'card-tabs',], 'tabs' => ['fixed width' => 'tabs-fixed-width',], 'tab' => 'tab', 'small' => 'small', 'teal' => 'teal', 'chip' => 'chip', 'chips' => ['' => 'chips', 'initial' => 'chips chips-initial', 'placeholder' => 'chips chips-placeholder', 'autocomplete' => 'chips chips-autocomplete',], 'sticky' => ['action' => 'sticky-action',], 'activator' => 'activator', 'halfway' => ['fab' => 'halfway-fab',], 'hoverable' => 'hoverable', 'img' => ['responsive' => 'responsive-img', 'fluid' => 'fluid responsive-img', 'thumbnail' => 'thumbnail responsive-img', 'circle' => 'circle responsive-img',], 'video' => ['container' => 'video-container', 'responsive' => 'responsive-video',], 'pulse' => ['' => 'btn btn-floating pulse', 'large' => 'btn btn-floating btn-large pulse',], 'depth' => [1 => 'z-depth-1', 2 => 'z-depth-2', 3 => 'z-depth-3', 4 => 'z-depth-4', 5 => 'z-depth-5', 6 => 'z-depth-6',], 'table' => ['' => '', 'striped' => 'striped', 'bordered' => 'bordered', 'hightlight' => 'hightlight', 'centered' => 'centered', 'responsive' => 'responsive-table'], 'btn' => ['' => 'btn', 'floating' => 'btn-floating', 'large' => 'btn-large', 'fixed action' => 'fixed-action-btn', 'flat' => 'btn-flat',], 'scale' => ['transition' => 'scale-transition', 'out' => 'scale-out', 'in' => 'scale-in',], 'collection' => ['item' => 'collection-item', 'header' => 'collection-header',], 'secondary' => ['content' => 'secondary-content',], 'dismissable' => 'dismissable', 'badge' => ['' => 'badge', 'new' => 'new-badge'], 'dropdown' => ['content' => 'dropdown-content', 'button' => 'dropdown-button'], 'page' => ['footer' => 'page-footer',], 'footer' => ['copyright' => 'footer-copyright',], 'right' => 'right', 'left' => 'left', 'center' => 'center', 'nav' => ['wrapper' => 'nav-wrapper',], 'brand' => ['logo' => 'brand-logo',], 'collapsible' => ['' => 'collapsible', 'header' => 'collapsible-header', 'body' => 'collapsible-body',], 'waves' => ['effect' => 'waves-effect', 'light' => 'waves-light', 'teal' => 'waves-teal',], 'horizontal' => 'horizontal', 'toolbar' => 'toolbar', 'disabled' => 'disabled', 'breadcrumb' => 'breadcrumb', 'input' => ['field' => 'input-field',],
-
+			],
+            'push' => [
+				'sm' => [
+				    '',
+                    'push-s1', 'push-s2', 'push-s3', 'push-s4',
+                    'push-s5', 'push-s6', 'push-s7', 'push-s8',
+                    'push-s9', 'push-s10', 'push-s11', 'push-s12',
+                ],
+				'md' => [
+				    '',
+                    'push-m1', 'push-m2', 'push-m3', 'push-m4',
+                    'push-m5', 'push-m6', 'push-m7', 'push-m8',
+                    'push-m9', 'push-m10', 'push-m11', 'push-m12',
+                ],
+				'lg' => [
+				    '',
+                    'push-l1', 'push-l2', 'push-l3', 'push-l4',
+                    'push-l5', 'push-l6', 'push-l7', 'push-l8',
+                    'push-l9', 'push-l10', 'push-l11', 'push-l12',
+                ],
+				'xl' => [
+				    '',
+                    'push-xl1', 'push-xl2', 'push-xl3', 'push-xl4',
+                    'push-xl5', 'push-xl6', 'push-xl7', 'push-xl8',
+                    'push-xl9', 'push-xl10', 'push-xl11', 'push-xl12',
+                ],
+            ],
+			'pull' => [
+			    'sm' => ['', 'pull-s1', 'pull-s2', 'pull-s3', 'pull-s4', 'pull-s5', 'pull-s6', 'pull-s7', 'pull-s8', 'pull-s9', 'pull-s10', 'pull-s11', 'pull-s12',],
+                'md' => ['', 'pull-m1', 'pull-m2', 'pull-m3', 'pull-m4', 'pull-m5', 'pull-m6', 'pull-m7', 'pull-m8', 'pull-m9', 'pull-m10', 'pull-m11', 'pull-m12',],
+                'lg' => ['', 'pull-l1', 'pull-l2', 'pull-l3', 'pull-l4', 'pull-l5', 'pull-l6', 'pull-l7', 'pull-l8', 'pull-l9', 'pull-l10', 'pull-l11', 'pull-l12',],
+                'xl' => ['', 'pull-xl1', 'pull-xl2', 'pull-xl3', 'pull-xl4', 'pull-xl5', 'pull-xl6', 'pull-xl7', 'pull-xl8', 'pull-xl9', 'pull-xl10', 'pull-xl11', 'pull-xl12',],
+            ],
+            'divider' => ['' => 'divider',],
+            'section' => ['' => 'section',],
+            'flow' => ['text' => 'flow-text',],
+            'valign' => ['wrapper' => 'valign-wrapper',],
+            'text' => [
+                'left' => 'left-align',
+                'right' => 'right-align',
+                'center' => 'center-align',
+                'justify' => 'justify-align',
+                'truncate' => 'truncate',
+                'flow' => 'flow-text',
+            ],
+            'hide' => [
+                '' => 'hide',
+                'on small' => [
+                    'only' => 'hide-on-small-only',
+                ],
+                'on med' => [
+                    'only' => 'hide-on-med-only',
+                    'and' => [
+                        'up' => 'hide-on-med-and-down',
+                        'down' => 'hide-on-med-and-up',
+                    ],
+                ],
+                'on larg' => [
+                    'only' => 'hide-on-large-only',
+                ],
+            ],
+            'show' => [
+                'on small' => 'show-on-small',
+                'on med' => [
+                    '' => 'show-on-medium',
+                    'and' => [
+                        'up' => 'show-on-medium-and-up',
+                        'down' => 'show-on-medium-and-down',
+                    ],
+                ],
+                'on large' => 'show-on-large',
+            ],
+            'card' => [
+                'panel' => 'card-panel',
+                'content' => 'card-content',
+                'title' => 'card-title',
+                'action' => 'card-action',
+                'image' => 'card-image',
+                'stacked' => 'card-stacked',
+                'reveal' => 'card-reveal',
+                'tabs' => 'card-tabs',
+            ],
+            'tabs' => [
+                'fixed width' => 'tabs-fixed-width',
+            ],
+            'tab' => 'tab',
+            'small' => 'small',
+            'teal' => 'teal',
+            'chip' => 'chip',
+            'chips' => [
+                '' => 'chips',
+                'initial' => 'chips chips-initial',
+                'placeholder' => 'chips chips-placeholder',
+                'autocomplete' => 'chips chips-autocomplete',
+            ],
+            'sticky' => [
+                'action' => 'sticky-action',
+            ],
+            'activator' => 'activator',
+            'halfway' => [
+                'fab' => 'halfway-fab',
+            ],
+            'hoverable' => 'hoverable',
+            'img' => [
+                'responsive' => 'responsive-img',
+                'fluid' => 'fluid responsive-img',
+                'thumbnail' => 'thumbnail responsive-img',
+                'circle' => 'circle responsive-img',
+            ],
+            'video' => [
+                'container' => 'video-container',
+                'responsive' => 'responsive-video',
+            ],
+            'pulse' => [
+                '' => 'btn btn-floating pulse',
+                'large' => 'btn btn-floating btn-large pulse',
+            ],
+            'depth' => [
+                1 => 'z-depth-1', 2 => 'z-depth-2',
+                3 => 'z-depth-3', 4 => 'z-depth-4',
+                5 => 'z-depth-5', 6 => 'z-depth-6',
+            ],
+            'table' => [
+                '' => '',
+                'striped' => 'striped',
+                'bordered' => 'bordered',
+                'hightlight' => 'hightlight',
+                'centered' => 'centered',
+                'responsive' => 'responsive-table'
+            ],
+            'btn' => [
+                '' => 'btn',
+                'floating' => 'btn-floating',
+                'large' => 'btn-large',
+                'fixed action' => 'fixed-action-btn',
+                'flat' => 'btn-flat',
+            ],
+            'scale' => [
+                'transition' => 'scale-transition',
+                'out' => 'scale-out',
+                'in' => 'scale-in',
+            ],
+            'collection' => [
+                'item' => 'collection-item',
+                'header' => 'collection-header',
+            ],
+            'secondary' => [
+                'content' => 'secondary-content',
+            ],
+            'dismissable' => 'dismissable',
+            'badge' => [
+                '' => 'badge',
+                'new' => 'new-badge',
+            ],
+            'dropdown' => [
+                'content' => 'dropdown-content',
+                'button' => 'dropdown-button',
+            ],
+            'page' => [
+                'footer' => 'page-footer',
+            ],
+            'footer' => [
+                'copyright' => 'footer-copyright',
+            ],
+            'right' => 'right',
+            'left' => 'left',
+            'center' => 'center',
+            'nav' => [
+                'wrapper' => 'nav-wrapper',
+            ],
+            'brand' => [
+                'logo' => 'brand-logo',
+            ],
+            'collapsible' => [
+                '' => 'collapsible',
+                'header' => 'collapsible-header',
+                'body' => 'collapsible-body',
+            ],
+            'waves' => [
+                'effect' => 'waves-effect',
+                'light' => 'waves-light',
+                'teal' => 'waves-teal',
+            ],
+            'horizontal' => 'horizontal',
+            'toolbar' => 'toolbar',
+            'disabled' => 'disabled',
+            'breadcrumb' => 'breadcrumb',
+            'input' => [
+                'field' => 'input-field',
+            ],
 		]
 	];
 	private static $materialize_versions = [

@@ -1,7 +1,6 @@
 <?php
 
 ini_set('display_errors', 'on');
-echo '<meta charset="utf-8">';
 use \html_generator\Frameworks;
 use \html_generator\HtmlGenerator;
 
